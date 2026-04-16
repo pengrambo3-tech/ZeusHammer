@@ -60,7 +60,14 @@ class LLMClient:
         if result:
             return result
 
-        raise RuntimeError("无法调用LLM，请设置ANTHROPIC_API_KEY或安装Claude CLI")
+        # 提供清晰的错误信息
+        if not self.api_key and not self._check_claude_cli():
+            return LLMResponse(
+                content="Error: No API key configured. Please set ANTHROPIC_API_KEY or CHINAWHAPI_KEY in ~/.zueshammer/.env",
+                model=self.model
+            )
+        
+        raise RuntimeError("LLM调用失败，请检查API密钥是否有效")
 
     async def _call_via_cli(self, prompt: str, system: str, tools: List[Dict]) -> Optional[LLMResponse]:
         """通过Claude CLI调用"""
@@ -100,6 +107,11 @@ class LLMClient:
         except Exception as e:
             logger.debug(f"Claude CLI错误: {e}")
             return None
+
+    def _check_claude_cli(self) -> bool:
+        """检查Claude CLI是否可用"""
+        import shutil
+        return shutil.which("claude") is not None
 
     async def _call_via_api(self, prompt: str, system: str, tools: List[Dict]) -> Optional[LLMResponse]:
         """通过直接API调用"""
