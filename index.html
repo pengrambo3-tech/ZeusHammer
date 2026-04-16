@@ -3,158 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZuesHammer - Zeus Hammer | Super AI Agent</title>
+    <title>ZuesHammer - AI Agent with Local Brain & Voice</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #050508;
-            --bg-secondary: #0a0a12;
-            --bg-card: rgba(15, 15, 25, 0.8);
-            --accent-primary: #00f0ff;
-            --accent-secondary: #7b2fff;
-            --accent-gold: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(20, 20, 30, 0.8);
+            --accent-cyan: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-green: #10b981;
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-secondary: rgba(255, 255, 255, 0.6);
             --text-dim: rgba(255, 255, 255, 0.4);
-            --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.5);
-            --glow-purple: 0 0 20px rgba(123, 47, 255, 0.5);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-dark);
             color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
             line-height: 1.6;
-        }
-
-        /* Animated Background */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-        }
-
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-        }
-
-        .bg-glow-1 {
-            top: -200px;
-            right: -100px;
-            background: var(--accent-primary);
-            opacity: 0.15;
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        .bg-glow-2 {
-            bottom: -200px;
-            left: -100px;
-            background: var(--accent-secondary);
-            opacity: 0.15;
-            animation: pulse 8s ease-in-out infinite 4s;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.2); opacity: 0.2; }
+            overflow-x: hidden;
         }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem 2rem;
-            background: rgba(5, 5, 8, 0.9);
+            width: 100%;
+            padding: 1.2rem 3rem;
+            background: rgba(10, 10, 15, 0.9);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
         }
 
-        .nav-logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 2px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s;
         }
+        .nav-links a:hover { color: var(--accent-cyan); }
 
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -162,166 +74,121 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 6rem 2rem 4rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 0.6rem 1.2rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--accent-primary);
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
 
         .hero h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-gold));
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
-        .hero-tech {
+        .hero-cta {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .tech-badge {
-            padding: 0.5rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 0.8s ease 0.8s both;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+            transition: all 0.3s;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: var(--bg-primary);
-            box-shadow: var(--glow-cyan);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--bg-dark);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
-        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3); }
 
         .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
         }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
 
-        .btn-secondary:hover {
-            background: rgba(0, 240, 255, 0.1);
-            transform: translateY(-3px);
-        }
+        /* Section base */
+        section { padding: 6rem 2rem; }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
 
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
             margin-bottom: 1rem;
         }
 
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        /* Features Grid */
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        /* Feature cards */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 4rem;
         }
 
         .feature-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s;
             position: relative;
             overflow: hidden;
         }
@@ -332,273 +199,357 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
             transform: scaleX(0);
-            transition: transform 0.4s ease;
+            transition: transform 0.4s;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 240, 255, 0.2);
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.2);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
+        .feature-card:hover::before { transform: scaleX(1); }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(123, 47, 255, 0.1));
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
         }
 
+        .feature-card:nth-child(1) .feature-icon { background: rgba(0, 212, 255, 0.15); }
+        .feature-card:nth-child(2) .feature-icon { background: rgba(168, 85, 247, 0.15); }
+        .feature-card:nth-child(3) .feature-icon { background: rgba(236, 72, 153, 0.15); }
+
         .feature-card h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--text-primary);
         }
 
         .feature-card p {
             color: var(--text-secondary);
+            font-size: 0.95rem;
             line-height: 1.7;
         }
 
-        /* Architecture Section */
-        .arch-section {
-            background: var(--bg-secondary);
-            padding: 6rem 0;
-        }
-
-        .arch-diagram {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .feature-stats {
+            display: flex;
             gap: 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .arch-card {
+        .stat { text-align: center; }
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* Local Brain Section */
+        .brain-section {
+            background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.02), transparent);
+            padding: 8rem 2rem;
+        }
+
+        .brain-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .brain-flow {
             background: var(--bg-card);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .flow-step:last-child { border-bottom: none; }
+
+        .flow-num {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .flow-text { font-size: 0.95rem; }
+        .flow-text strong { color: var(--accent-cyan); }
+
+        .flow-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .flow-highlight strong { color: var(--accent-green); }
+
+        /* Voice Section */
+        .voice-section { padding: 8rem 2rem; }
+
+        .voice-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .voice-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
             padding: 2rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .arch-card:hover {
-            border-color: var(--accent-primary);
-            box-shadow: var(--glow-cyan);
+        .voice-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
         }
 
-        .arch-card .arch-icon {
+        .voice-emoji {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .arch-card h3 {
-            font-family: 'Orbitron', monospace;
+        .voice-card h4 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
-        .arch-card p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* Security Section */
-        .security-section {
-            padding: 6rem 0;
-        }
-
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .security-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2rem;
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-
-        .security-icon {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 100, 50, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .security-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .security-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Code Example */
-        .code-section {
-            background: var(--bg-secondary);
-            padding: 6rem 0;
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .code-header {
-            background: rgba(0, 240, 255, 0.05);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-        }
-
-        .code-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .code-dot.red { background: #ff5f57; }
-        .code-dot.yellow { background: #febc2e; }
-        .code-dot.green { background: #28c840; }
-
-        .code-title {
-            margin-left: 1rem;
-            font-family: 'JetBrains Mono', monospace;
+        .voice-card p {
             font-size: 0.85rem;
             color: var(--text-dim);
         }
 
-        .code-content {
-            padding: 2rem;
-            overflow-x: auto;
+        /* Memory Architecture */
+        .memory-section {
+            background: var(--bg-card);
+            padding: 8rem 2rem;
         }
 
-        .code-content pre {
-            margin: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .code-content .keyword { color: var(--accent-secondary); }
-        .code-content .string { color: var(--accent-gold); }
-        .code-content .comment { color: var(--text-dim); }
-        .code-content .function { color: var(--accent-primary); }
-
-        /* Quick Start */
-        .quickstart-section {
-            padding: 6rem 0;
-        }
-
-        .quickstart-grid {
+        .memory-layers {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .quickstart-card {
+        .memory-layer {
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .memory-layer:nth-child(1) {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.02));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .memory-layer:nth-child(2) {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.02));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .memory-layer:nth-child(3) {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.02));
+            border: 1px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .layer-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-layer:nth-child(1) .layer-label { color: var(--accent-cyan); }
+        .memory-layer:nth-child(2) .layer-label { color: var(--accent-purple); }
+        .memory-layer:nth-child(3) .layer-label { color: var(--accent-pink); }
+
+        .memory-layer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-layer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .spec {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .spec-label { color: var(--text-dim); }
+        .spec-value { color: var(--text-secondary); font-family: 'Space Mono', monospace; }
+
+        /* Code Example */
+        .code-section { padding: 8rem 2rem; }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .code-header {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .code-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .code-dot.red { background: #ff5f57; }
+        .code-dot.yellow { background: #febc2e; }
+        .code-dot.green { background: #28c840; }
+
+        .code-content { padding: 2rem; overflow-x: auto; }
+
+        .code-content pre {
+            margin: 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .code-content .keyword { color: var(--accent-purple); }
+        .code-content .string { color: #fbbf24; }
+        .code-content .comment { color: var(--text-dim); }
+        .code-content .function { color: var(--accent-cyan); }
+        .code-content .variable { color: var(--accent-pink); }
+
+        /* Quick Start */
+        .start-section {
+            background: linear-gradient(180deg, transparent, rgba(168, 85, 247, 0.02), transparent);
+            padding: 8rem 2rem;
+        }
+
+        .start-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .start-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            border-radius: 24px;
             padding: 2rem;
             text-align: center;
             position: relative;
         }
 
-        .quickstart-card .step {
+        .start-num {
             position: absolute;
-            top: -15px;
+            top: -1rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Orbitron', monospace;
+            font-family: 'Space Mono', monospace;
             font-weight: 700;
-            font-size: 0.9rem;
         }
 
-        .quickstart-card h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
+        .start-card h3 {
+            font-size: 1.2rem;
             margin: 1rem 0 0.5rem;
         }
 
-        .quickstart-card p {
+        .start-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
-        .quickstart-card pre {
+        .start-card pre {
             background: rgba(0, 0, 0, 0.3);
             padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            border-radius: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
             text-align: left;
             overflow-x: auto;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
+            background: var(--bg-card);
+            padding: 4rem 2rem 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 4rem;
-            margin-bottom: 3rem;
         }
 
         .footer-brand h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 1rem;
         }
 
@@ -608,355 +559,428 @@
         }
 
         .footer-links h4 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
-
-        .footer-links a:hover {
-            color: var(--accent-primary);
-        }
+        .footer-links a:hover { color: var(--accent-cyan); }
 
         .footer-bottom {
-            text-align: center;
+            max-width: 1200px;
+            margin: 3rem auto 0;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* Stats */
-        .stats-bar {
-            background: var(--bg-secondary);
-            padding: 3rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
             text-align: center;
-        }
-
-        .stat-item h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            color: var(--text-dim);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 900px) {
             .nav-links { display: none; }
-            .arch-diagram { grid-template-columns: 1fr; }
-            .security-grid { grid-template-columns: 1fr; }
-            .quickstart-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid, .voice-grid, .memory-layers, .start-steps { grid-template-columns: 1fr; }
+            .brain-content { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-
     <nav>
-        <a href="#" class="nav-logo">ZH</a>
+        <div class="logo">ZH</div>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
-            <li><a href="#architecture">Architecture</a></li>
-            <li><a href="#security">Security</a></li>
-            <li><a href="#quickstart">Quick Start</a></li>
+            <li><a href="#brain">Local Brain</a></li>
+            <li><a href="#voice">Voice</a></li>
+            <li><a href="#memory">Memory</a></li>
             <li><a href="https://github.com/pengrambo3-tech/zueshammer">GitHub</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-badge">v2.0.0 - Now Available</div>
-        <h1><span class="highlight">ZuesHammer</span><br>Zeus Hammer</h1>
-        <p class="hero-subtitle">Super AI Agent powered by Claude, Hermes, and OpenClaw. Intelligent automation with enterprise-grade security.</p>
-        
-        <div class="hero-tech">
-            <span class="tech-badge">Claude</span>
-            <span class="tech-badge">Hermes MCP</span>
-            <span class="tech-badge">OpenClaw</span>
-            <span class="tech-badge">Python 3.10+</span>
-        </div>
-
-        <div class="hero-buttons">
+        <h1><span class="gradient">ZuesHammer</span></h1>
+        <p class="hero-subtitle">The AI Agent with Local Brain & Voice Interaction. Think locally, speak freely, remember everything.</p>
+        <div class="hero-cta">
             <a href="https://github.com/pengrambo3-tech/zueshammer" class="btn btn-primary">Get Started</a>
-            <a href="#quickstart" class="btn btn-secondary">Documentation</a>
+            <a href="#features" class="btn btn-secondary">Learn More</a>
         </div>
     </section>
 
-    <section class="stats-bar">
+    <section id="features">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Built-in Tools</p>
-                </div>
-                <div class="stat-item">
-                    <h3>3</h3>
-                    <p>Memory Layers</p>
-                </div>
-                <div class="stat-item">
-                    <h3>3</h3>
-                    <p>Permission Levels</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Autonomous Operation</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Core Features</h2>
-                <p>Everything you need for intelligent automation</p>
+            <div style="text-align: center;">
+                <div class="section-label">What Makes Us Different</div>
+                <h2 class="section-title">Three Breakthrough Technologies</h2>
+                <p class="section-desc">Unlike typical AI agents, ZuesHammer combines unique technologies that make it smarter, faster, and more efficient.</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
                     <h3>Local Brain</h3>
-                    <p>Three-tier memory architecture with short-term, long-term, and working memory for contextual understanding.</p>
+                    <p>Intent recognition & pattern matching that learns new skills automatically. 80% of common tasks run instantly without calling LLM.</p>
+                    <div class="feature-stats">
+                        <div class="stat">
+                            <div class="stat-value">80%</div>
+                            <div class="stat-label">Faster</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">∞</div>
+                            <div class="stat-label">Self-learning</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Tool System</h3>
-                    <p>50+ built-in tools for file operations, code execution, browser automation, and API integration.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📡</div>
-                    <h3>MCP Protocol</h3>
-                    <p>Full Model Context Protocol support for seamless integration with external AI services and tools.</p>
-                </div>
+
                 <div class="feature-card">
                     <div class="feature-icon">🎙️</div>
-                    <h3>Voice Interface</h3>
-                    <p>Wake word detection and voice synthesis for hands-free interaction with the AI agent.</p>
+                    <h3>Voice-First</h3>
+                    <p>Local Whisper STT + Edge TTS for true hands-free operation. No data sent to cloud - fully offline capable.</p>
+                    <div class="feature-stats">
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Local</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Data Sent</div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Browser Automation</h3>
-                    <p>Playwright-powered web scraping and automation for intelligent data gathering.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Skills Engine</h3>
-                    <p>Extensible workflow system for creating and executing complex automation tasks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="architecture" class="arch-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Architecture</h2>
-                <p>The fusion of three powerful systems</p>
-            </div>
-
-            <div class="arch-diagram">
-                <div class="arch-card">
-                    <div class="arch-icon">⚡</div>
-                    <h3>ClaudeCode</h3>
-                    <p>Tool orchestration, code editing, concurrency partitioning</p>
-                </div>
-                <div class="arch-card">
-                    <div class="arch-icon">🔮</div>
-                    <h3>Hermes</h3>
-                    <p>MCP automation, workflow skills, memory system</p>
-                </div>
-                <div class="arch-card">
-                    <div class="arch-icon">🦅</div>
-                    <h3>OpenClaw</h3>
-                    <p>Skill invocation, browser automation, chat ports</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="security" class="security-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Security First</h2>
-                <p>Enterprise-grade protection for your AI operations</p>
-            </div>
-
-            <div class="security-grid">
-                <div class="security-card">
-                    <div class="security-icon">🔐</div>
-                    <div>
-                        <h3>Permission Levels</h3>
-                        <p>Three levels: safe (all confirm), semi_open (auto safe ops), full_open (unrestricted).</p>
-                    </div>
-                </div>
-                <div class="security-card">
-                    <div class="security-icon">🛡️</div>
-                    <div>
-                        <h3>Credential Protection</h3>
-                        <p>Real-time detection and blocking of API key and secret leakage attempts.</p>
-                    </div>
-                </div>
-                <div class="security-card">
-                    <div class="security-icon">⚠️</div>
-                    <div>
-                        <h3>Malware Detection</h3>
-                        <p>Automated scanning for malicious code patterns and suspicious operations.</p>
-                    </div>
-                </div>
-                <div class="security-card">
-                    <div class="security-icon">🔄</div>
-                    <div>
-                        <h3>Circuit Breaker</h3>
-                        <p>Automatic protection against abnormal operations and resource exhaustion.</p>
+                    <div class="feature-icon">🧬</div>
+                    <h3>Three-Tier Memory</h3>
+                    <p>Short-term (LRU cache) + Long-term (SQLite) + Working memory. Never forget important context.</p>
+                    <div class="feature-stats">
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Layers</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Persistence</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="quickstart" class="quickstart-section">
+    <section id="brain" class="brain-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Quick Start</h2>
-                <p>Get up and running in minutes</p>
+            <div class="brain-content">
+                <div>
+                    <div class="section-label">Core Innovation</div>
+                    <h2 class="section-title">Local Brain</h2>
+                    <p class="section-desc">Think Before Asking LLM. The Local Brain analyzes user intent and matches against learned patterns - executing skills directly without waiting for LLM response.</p>
+                    
+                    <div class="brain-flow" style="margin-top: 2rem;">
+                        <div class="flow-step">
+                            <div class="flow-num">1</div>
+                            <div class="flow-text">User gives instruction</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-num">2</div>
+                            <div class="flow-text"><strong>Pattern matching</strong> against skill library</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-num">3</div>
+                            <div class="flow-text"><strong>Match found?</strong> Execute directly</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-num">4</div>
+                            <div class="flow-text">No match? Call LLM for solution</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-num">5</div>
+                            <div class="flow-text">Work complete → <strong>Learn new skill</strong></div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-num">6</div>
+                            <div class="flow-text">Next time → Use learned skill instantly</div>
+                        </div>
+                        
+                        <div class="flow-highlight">
+                            <strong>Result:</strong> 80% faster for common tasks. Self-improving. Privacy-first.
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div style="background: var(--bg-card); border: 1px solid rgba(0, 212, 255, 0.1); border-radius: 24px; padding: 2rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--accent-cyan);">Intent Recognition</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span style="background: rgba(0, 212, 255, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">file_read</span>
+                            <span style="background: rgba(0, 212, 255, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">file_write</span>
+                            <span style="background: rgba(0, 212, 255, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">command_exec</span>
+                            <span style="background: rgba(0, 212, 255, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">web_search</span>
+                            <span style="background: rgba(0, 212, 255, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">web_browse</span>
+                            <span style="background: rgba(168, 85, 247, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">code</span>
+                            <span style="background: rgba(168, 85, 247, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">question</span>
+                            <span style="background: rgba(168, 85, 247, 0.1); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">task</span>
+                        </div>
+                        
+                        <h4 style="margin: 1.5rem 0 1rem; color: var(--accent-purple);">Skill Learning</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+                            After each LLM task, the Local Brain evaluates if it's worth learning. Simple tasks are skipped; complex ones are converted into reusable skills for instant execution next time.
+                        </p>
+                        
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-dim); font-size: 0.85rem;">Built-in Skills</span>
+                                <span style="color: var(--accent-cyan); font-family: 'Space Mono';">50+</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-dim); font-size: 0.85rem;">Learned Skills</span>
+                                <span style="color: var(--accent-green); font-family: 'Space Mono';">∞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="voice" class="voice-section">
+        <div class="container" style="text-align: center;">
+            <div class="section-label">Hands-Free Operation</div>
+            <h2 class="section-title">Voice Interaction</h2>
+            <p class="section-desc" style="margin: 0 auto;">Complete voice pipeline running locally. No cloud dependency, full privacy protection.</p>
+
+            <div class="voice-grid">
+                <div class="voice-card">
+                    <div class="voice-emoji">🎤</div>
+                    <h4>Whisper STT</h4>
+                    <p>Local speech recognition. Works offline.</p>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-emoji">🔊</div>
+                    <h4>Edge TTS</h4>
+                    <p>Natural voice synthesis. Free & high quality.</p>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-emoji">👋</div>
+                    <h4>Wake Word</h4>
+                    <p>"Hey Agent" activation. Always listening.</p>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-emoji">🌐</div>
+                    <h4>Multi-Language</h4>
+                    <p>Auto-detect Chinese/English/Japanese.</p>
+                </div>
             </div>
 
-            <div class="quickstart-grid">
-                <div class="quickstart-card">
-                    <span class="step">1</span>
-                    <h3>Clone & Install</h3>
-                    <p>Download and install dependencies</p>
-                    <pre>git clone https://github.com/pengrambo3-tech/zueshammer.git
-cd zueshammer
-python3 install.py</pre>
+            <div class="code-block" style="margin-top: 4rem; text-align: left;">
+                <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span style="margin-left: 1rem; font-family: 'Space Mono'; font-size: 0.85rem; color: var(--text-dim);">terminal</span>
                 </div>
-                <div class="quickstart-card">
-                    <span class="step">2</span>
-                    <h3>Configure</h3>
-                    <p>Set up your API keys</p>
-                    <pre># ~/.zueshammer/.env
-ANTHROPIC_API_KEY=sk-ant-xxx
-PERMISSION_LEVEL=semi_open</pre>
-                </div>
-                <div class="quickstart-card">
-                    <span class="step">3</span>
-                    <h3>Run</h3>
-                    <p>Start the agent</p>
-                    <pre># CLI mode
-python3 -m src.main
+                <div class="code-content">
+                    <pre><span class="comment"># Start voice mode</span>
+$ python3 -m src.main <span class="variable">--mode voice</span>
 
-# Web UI
-python3 -m src.main --mode web</pre>
+<span class="comment"># Say this:</span>
+<span class="string">"帮我读取 /tmp/test.txt"</span>
+<span class="string">"search for Python tutorials"</span>
+<span class="string">"运行 git status"</span>
+
+<span class="comment"># Get instant response with synthesized voice</span></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memory" class="memory-section">
+        <div class="container" style="text-align: center;">
+            <div class="section-label">Never Forget</div>
+            <h2 class="section-title">Three-Tier Memory System</h2>
+            <p class="section-desc" style="margin: 0 auto;">Inspired by ClaudeCode, Hermes, and OpenClaw best practices. Intelligent data placement.</p>
+
+            <div class="memory-layers">
+                <div class="memory-layer">
+                    <div class="layer-label">Layer 1</div>
+                    <h3>Short-Term</h3>
+                    <p>LRU cache in RAM. Instant access for hot data.</p>
+                    <div class="layer-specs">
+                        <div class="spec">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">RAM (OrderedDict)</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Capacity</span>
+                            <span class="spec-value">100 items</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Duration</span>
+                            <span class="spec-value">~1 hour</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Algorithm</span>
+                            <span class="spec-value">LRU + Importance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memory-layer">
+                    <div class="layer-label">Layer 2</div>
+                    <h3>Long-Term</h3>
+                    <p>SQLite persistence. Your knowledge, forever.</p>
+                    <div class="layer-specs">
+                        <div class="spec">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">SQLite</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Capacity</span>
+                            <span class="spec-value">Unlimited</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Duration</span>
+                            <span class="spec-value">Permanent</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Features</span>
+                            <span class="spec-value">Vector Search</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memory-layer">
+                    <div class="layer-label">Layer 3</div>
+                    <h3>Working</h3>
+                    <p>Active context. Current task state in memory.</p>
+                    <div class="layer-specs">
+                        <div class="spec">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">In-Context</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Capacity</span>
+                            <span class="spec-value">200k tokens</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Duration</span>
+                            <span class="spec-value">Session</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Purpose</span>
+                            <span class="spec-value">Current Task</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="code-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Python API</h2>
-                <p>Integrate ZuesHammer into your projects</p>
-            </div>
+        <div class="container" style="text-align: center;">
+            <div class="section-label">Python API</div>
+            <h2 class="section-title">Get Started in Minutes</h2>
+            <p class="section-desc" style="margin: 0 auto;">Simple integration into your projects.</p>
 
-            <div class="code-block">
+            <div class="code-block" style="text-align: left;">
                 <div class="code-header">
                     <span class="code-dot red"></span>
                     <span class="code-dot yellow"></span>
                     <span class="code-dot green"></span>
-                    <span class="code-title">example.py</span>
+                    <span style="margin-left: 1rem; font-family: 'Space Mono'; font-size: 0.85rem; color: var(--text-dim);">example.py</span>
                 </div>
                 <div class="code-content">
                     <pre><span class="keyword">from</span> src <span class="keyword">import</span> ZuesHammer
 <span class="keyword">from</span> src.core.config <span class="keyword">import</span> Config
 
-<span class="comment"># Initialize configuration</span>
 config = Config.from_default_locations()
 config.permission_level = <span class="string">"semi_open"</span>
-config.model = <span class="string">"claude-3-5-sonnet-20241022"</span>
+config.voice_enabled = <span class="variable">True</span>
 
-<span class="comment"># Create agent instance</span>
 agent = ZuesHammer(config)
 
 <span class="keyword">async def</span> <span class="function">main</span>():
-    <span class="comment"># Start the agent</span>
     <span class="keyword">await</span> agent.start()
     
-    <span class="comment"># Process user input</span>
-    response = <span class="keyword">await</span> agent.process(<span class="string">"Hello, help me analyze this codebase"</span>)
+    <span class="comment"># Voice input or text</span>
+    response = <span class="keyword">await</span> agent.process(<span class="string">"Hello, help me analyze this project"</span>)
     <span class="keyword">print</span>(response)
     
-    <span class="comment"># Cleanup</span>
     <span class="keyword">await</span> agent.stop()
 
-<span class="comment"># Run</span>
 main()</pre>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="start-section">
+        <div class="container" style="text-align: center;">
+            <div class="section-label">Quick Start</div>
+            <h2 class="section-title">Get Up and Running</h2>
+
+            <div class="start-steps">
+                <div class="start-card">
+                    <div class="start-num">1</div>
+                    <h3>Clone</h3>
+                    <p>Download the repository</p>
+                    <pre>git clone https://github.com/pengrambo3-tech/zueshammer.git
+cd zueshammer</pre>
+                </div>
+                <div class="start-card">
+                    <div class="start-num">2</div>
+                    <h3>Install</h3>
+                    <p>Install dependencies</p>
+                    <pre>python3 install.py
+
+# Or with pip
+pip install -r requirements.txt</pre>
+                </div>
+                <div class="start-card">
+                    <div class="start-num">3</div>
+                    <h3>Run</h3>
+                    <p>Start the agent</p>
+                    <pre># Voice mode (recommended!)
+python3 -m src.main --mode voice
+
+# Or CLI mode
+python3 -m src.main --mode cli</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>ZuesHammer</h3>
-                    <p>Super AI Agent - The fusion of Claude, Hermes, and OpenClaw for intelligent automation.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer">GitHub</a></li>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer/blob/master/README.md">Documentation</a></li>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer/issues">Issues</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Project</h4>
-                    <ul>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer/blob/master/LICENSE">License (MIT)</a></li>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer/contributing">Contributing</a></li>
-                        <li><a href="https://github.com/pengrambo3-tech/zueshammer/releases">Changelog</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>ZuesHammer</h3>
+                <p>The AI Agent with Local Brain & Voice. Think locally, speak freely, remember everything.</p>
             </div>
-            <div class="footer-bottom">
-                <p>© 2024 ZuesHammer. MIT License. Made with ❤️</p>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://github.com/pengrambo3-tech/zueshammer">GitHub</a></li>
+                    <li><a href="https://github.com/pengrambo3-tech/zueshammer/blob/master/README.md">Documentation</a></li>
+                    <li><a href="https://github.com/pengrambo3-tech/zueshammer/issues">Issues</a></li>
+                </ul>
             </div>
+            <div class="footer-links">
+                <h4>Project</h4>
+                <ul>
+                    <li><a href="https://github.com/pengrambo3-tech/zueshammer/blob/master/LICENSE">License (MIT)</a></li>
+                    <li><a href="https://github.com/pengrambo3-tech/zueshammer/releases">Changelog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 ZuesHammer. MIT License. Built with ❤️</p>
         </div>
     </footer>
 </body>
