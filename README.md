@@ -118,16 +118,27 @@ python3 install.py
 # Configure - Choose your preferred API provider
 ```
 
-### Option 1: China LLM (Recommended for Chinese users)
+### Option 1: China LLM (Recommended for Chinese users - via chinawhapi.com)
 
 ```bash
-# Get your API key from https://chinawhapi.com
+# One API key for all Chinese LLMs: DeepSeek, Qwen, GLM, Moonshot, ERNIE, Doubao, MiniMax
+# Get key from https://chinawhapi.com/console
 echo "CHINAWHAPI_KEY=your_key_here" >> ~/.zueshammer/.env
 echo "API_PROVIDER=chinawhapi" >> ~/.zueshammer/.env
 echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
 ```
 
-### Option 2: Anthropic Claude
+### Option 2: Use Your Own API (Any OpenAI-compatible API)
+
+```bash
+# ChinaWhapi or any other OpenAI-compatible endpoint
+echo "OPENAI_API_KEY=your_key_here" >> ~/.zueshammer/.env
+echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
+echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
+echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
+```
+
+### Option 3: Anthropic Claude
 
 ```bash
 echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env

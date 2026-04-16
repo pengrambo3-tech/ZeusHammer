@@ -118,16 +118,27 @@ python3 install.py
 # 配置 - 选择你喜欢的API供应商
 ```
 
-### 方式一：中国大模型（推荐中国用户）
+### 方式一：中国大模型（推荐 - 通过 chinawhapi.com）
 
 ```bash
-# 从 https://chinawhapi.com 获取API密钥
+# 一个API Key调用所有中国大模型: DeepSeek, 通义千问, 智谱, 月之暗面, 文心, 豆包, MiniMax
+# 从 https://chinawhapi.com/console 获取密钥
 echo "CHINAWHAPI_KEY=你的密钥" >> ~/.zueshammer/.env
 echo "API_PROVIDER=chinawhapi" >> ~/.zueshammer/.env
 echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
 ```
 
-### 方式二：Anthropic Claude
+### 方式二：使用你自己的API（任意OpenAI兼容接口）
+
+```bash
+# 可以是 ChinaWhapi 或任何其他 OpenAI 兼容接口
+echo "OPENAI_API_KEY=你的密钥" >> ~/.zueshammer/.env
+echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
+echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
+echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
+```
+
+### 方式三：Anthropic Claude
 
 ```bash
 echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
