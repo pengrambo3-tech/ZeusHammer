@@ -1,4 +1,4 @@
-# ZuesHammer - Zeus Hammer
+# ZuesHammer - The Ultimate AI Agent
 
 <div align="center">
 
@@ -6,11 +6,30 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-**🤖 The Intelligent AI Agent with Local Brain & Voice**
+**The AI Agent with Local Brain, Voice Interaction & Three-Tier Memory**
 
 *Think Locally. Speak Freely. Remember Everything.*
 
+[![Star](https://img.shields.io/github/stars/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/zueshammer)
+[![Fork](https://img.shields.io/github/forks/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/zueshammer)
+
 </div>
+
+---
+
+## Quick Install
+
+```bash
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
+```
+
+Or manual install:
+
+```bash
+git clone https://github.com/pengrambo3-tech/zueshammer.git
+cd zueshammer
+pip install -r requirements.txt
+```
 
 ---
 
@@ -28,7 +47,7 @@ Unlike typical AI agents, ZuesHammer combines **three breakthrough technologies*
 
 ## Supported Models
 
-### 🌏 China LLM via [chinawhapi.com](https://chinawhapi.com)
+### China LLM via [chinawhapi.com](https://chinawhapi.com)
 
 Unified API access to all major Chinese LLMs with **single key**:
 
@@ -42,7 +61,7 @@ Unified API access to all major Chinese LLMs with **single key**:
 | **Doubao** (ByteDance) | Pro, Lite | Fast, cost effective |
 | **MiniMax** | ABAB6 Chat/GSPT | Conversational AI |
 
-### 🤖 International Models
+### International Models
 
 | Provider | Models |
 |----------|--------|
@@ -54,19 +73,19 @@ Unified API access to all major Chinese LLMs with **single key**:
 
 ## Key Features
 
-### 🧠 Local Brain - Think Before Asking LLM
+### Local Brain - Think Before Asking LLM
 
 The core innovation that sets ZuesHammer apart:
 
-```python
+```
 # ZuesHammer's Local Brain workflow:
-# 1. User gives instruction
-# 2. Local Brain receives instruction
-# 3. Pattern matching against skill library
-# 4. Match found → Execute skill directly (NO LLM needed!)
-# 5. No match → Call LLM for solution
-# 6. Work complete → Learn new skill
-# 7. Next time → Use learned skill (instant, no LLM)
+1. User gives instruction
+2. Local Brain receives instruction
+3. Pattern matching against skill library
+4. Match found → Execute skill directly (NO LLM needed!)
+5. No match → Call LLM for solution
+6. Work complete → Learn new skill
+7. Next time → Use learned skill (instant, no LLM)
 ```
 
 **Benefits:**
@@ -75,7 +94,7 @@ The core innovation that sets ZuesHammer apart:
 - **Self-improving** - Learns from every task, gets smarter over time
 - **Privacy-first** - Simple patterns never leave your machine
 
-### 🎙️ Voice Interaction - Real Hands-Free
+### Voice Interaction - Real Hands-Free
 
 Complete voice pipeline running locally:
 
@@ -93,7 +112,7 @@ python3 -m src.main --mode voice
 # Or: "search for Python tutorials"
 ```
 
-### 🧬 Three-Tier Memory System
+### Three-Tier Memory System
 
 Inspired by ClaudeCode, Hermes, and OpenClaw best practices:
 
@@ -107,48 +126,20 @@ Inspired by ClaudeCode, Hermes, and OpenClaw best practices:
 
 ## Quick Start
 
-```bash
-# Clone
-git clone https://github.com/pengrambo3-tech/zueshammer.git
-cd zueshammer
-
-# Install
-python3 install.py
-
-# Configure - Choose your preferred API provider
-```
-
-### Option 1: China LLM (Recommended for Chinese users - via chinawhapi.com)
+### Configure API
 
 ```bash
-# One API key for all Chinese LLMs: DeepSeek, Qwen, GLM, Moonshot, ERNIE, Doubao, MiniMax
-# Get key from https://chinawhapi.com/console
-echo "CHINAWHAPI_KEY=your_key_here" >> ~/.zueshammer/.env
-echo "API_PROVIDER=chinawhapi" >> ~/.zueshammer/.env
-echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
-```
-
-### Option 2: Use Your Own API (Any OpenAI-compatible API)
-
-```bash
-# ChinaWhapi or any other OpenAI-compatible endpoint
-echo "OPENAI_API_KEY=your_key_here" >> ~/.zueshammer/.env
-echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
+# Option 1: ChinaWhapi (recommended for Chinese users)
+echo "OPENAI_API_KEY=your_key" >> ~/.zueshammer/.env
 echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
 echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
-```
 
-### Option 3: Anthropic Claude
-
-```bash
+# Option 2: Anthropic Claude
 echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
 echo "API_PROVIDER=anthropic" >> ~/.zueshammer/.env
 echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
-```
 
-### Option 4: OpenAI
-
-```bash
+# Option 3: OpenAI
 echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
 echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
 echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
@@ -157,38 +148,9 @@ echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
 ### Run
 
 ```bash
-python3 -m src.main --mode cli   # CLI
+python3 -m src.main --mode cli   # CLI mode
 python3 -m src.main --mode web   # Web UI
 python3 -m src.main --mode voice # Voice (recommended!)
-```
-
----
-
-## API Configuration
-
-### chinawhapi.com (中国大模型)
-
-```bash
-# From https://chinawhapi.com/console
-CHINAWHAPI_KEY=your_unified_key
-API_PROVIDER=chinawhapi
-MODEL=deepseek-chat  # or qwen-plus, glm-4, moonshot-v1-32k, etc.
-```
-
-### Anthropic
-
-```bash
-ANTHROPIC_API_KEY=sk-ant-your-key
-API_PROVIDER=anthropic
-MODEL=claude-3-5-sonnet-20241022
-```
-
-### OpenAI
-
-```bash
-OPENAI_API_KEY=sk-your-key
-API_PROVIDER=openai
-MODEL=gpt-4o
 ```
 
 ---

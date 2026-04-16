@@ -14,6 +14,22 @@
 
 ---
 
+## 一键安装
+
+```bash
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
+```
+
+或手动安装:
+
+```bash
+git clone https://github.com/pengrambo3-tech/zueshammer.git
+cd zueshammer
+pip install -r requirements.txt
+```
+
+---
+
 ## ZuesHammer 与众不同之处？
 
 不同于普通的 AI 助手，ZuesHammer 融合了**三项突破性技术**：
