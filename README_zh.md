@@ -146,7 +146,7 @@ echo "API_PROVIDER=anthropic" >> ~/.zueshammer/.env
 echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
 ```
 
-### 方式三：OpenAI
+### 方式四：OpenAI
 
 ```bash
 echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
@@ -190,6 +190,57 @@ OPENAI_API_KEY=sk-your-key
 API_PROVIDER=openai
 MODEL=gpt-4o
 ```
+
+---
+
+## 高级：OpenClaw风格多模型配置
+
+对于高级用户，ZuesHammer支持OpenClaw风格的多模型路由和自动故障转移。
+
+### 多Provider配置
+
+复制 `config/example_config.yaml` 到 `~/.zueshammer/config.yaml`:
+
+```yaml
+models:
+  default_provider: claude
+
+  providers:
+    claude:
+      api_key: ${ANTHROPIC_API_KEY}
+      model: claude-3-5-sonnet-20241022
+      priority: 1
+
+    china:
+      api_base: https://api.chinawhapi.com/v1
+      api_key: ${CHINAWHAPI_KEY}
+      model: deepseek-chat
+      priority: 3
+
+  # 关键词自动路由
+  routing_rules:
+    - keywords: [code, debug, 编程]
+      provider: claude
+      model: claude-opus-4-5
+
+    - keywords: [search, 搜索]
+      provider: china
+      model: deepseek-chat
+
+  # 故障转移链
+  fallback:
+    - provider: claude
+      model: claude-3-5-haiku-20241022
+```
+
+### 路由特性
+
+| 特性 | 说明 |
+|---------|-------------|
+| **关键词路由** | 根据查询关键词自动选择模型 |
+| **任务类型路由** | 代码 → Claude, 搜索 → DeepSeek |
+| **故障转移** | 限流时自动切换 |
+| **多Provider** | 同时使用多个API |
 
 ---
 

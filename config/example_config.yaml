@@ -1,0 +1,136 @@
+# ZuesHammer Configuration Example
+# OpenClaw-style Multi-Model Configuration
+# Copy to ~/.zueshammer/config.yaml
+
+# =============================================================================
+# Model Configuration (OpenClaw Style)
+# =============================================================================
+models:
+  # Default provider when no rules match
+  default_provider: claude
+
+  # Provider configurations
+  providers:
+    # Anthropic Claude
+    claude:
+      api_key: ${ANTHROPIC_API_KEY}
+      model: claude-3-5-sonnet-20241022
+      priority: 1
+      enabled: true
+
+    # OpenAI GPT
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      model: gpt-4o
+      priority: 2
+      enabled: true
+
+    # China LLM (via any OpenAI-compatible API)
+    china:
+      # chinawhapi.com - unified API for Chinese LLMs
+      api_base: https://api.chinawhapi.com/v1
+      api_key: ${CHINAWHAPI_KEY}
+      model: deepseek-chat
+      priority: 3
+      enabled: true
+
+    # Local Ollama
+    ollama:
+      api_base: http://localhost:11434/v1
+      api_key: "not-needed"
+      model: llama3.2
+      priority: 10
+      enabled: false
+
+  # Routing rules - automatically select model based on keywords
+  routing_rules:
+    # Code tasks -> Claude Opus (best for coding)
+    - keywords: [code, debug, 编程, 代码, 函数, class, def, import, 调试]
+      provider: claude
+      model: claude-opus-4-5
+      task_type: code
+
+    # Search tasks -> DeepSeek (fast, cheap)
+    - keywords: [search, 搜索, 查找, google, find information]
+      provider: china
+      model: deepseek-chat
+      task_type: search
+
+    # Simple chat -> Haiku (fast, cheap)
+    - keywords: [hello, hi, hey, 你好, 在吗]
+      provider: claude
+      model: claude-3-5-haiku-20241022
+      task_type: chat
+
+    # Creative tasks -> GPT-4o
+    - keywords: [write, create, story, poem, 写作, 创作, 故事]
+      provider: openai
+      model: gpt-4o
+      task_type: creative
+
+  # Fallback chain (when primary fails)
+  fallback:
+    - provider: claude
+      model: claude-3-5-haiku-20241022
+    - provider: china
+      model: deepseek-chat
+
+# =============================================================================
+# Basic Settings
+# =============================================================================
+name: ZuesHammer
+version: 2.0.0
+debug: false
+
+# =============================================================================
+# Permission Level
+# =============================================================================
+permission_level: semi_open  # safe, semi_open, full_open
+
+# =============================================================================
+# Voice Settings
+# =============================================================================
+voice_enabled: false
+voice_stt_provider: whisper  # whisper, google, azure
+voice_tts_provider: edge   # edge, google, elevenlabs
+
+# =============================================================================
+# Memory Settings
+# =============================================================================
+memory_enabled: true
+memory_short_max: 100
+memory_short_ttl: 3600
+memory_long_enabled: true
+memory_long_db: ~/.zueshammer/memory.db
+
+# =============================================================================
+# Tool Settings
+# =============================================================================
+tools_enabled: true
+tool_timeout: 30
+
+# =============================================================================
+# MCP Settings
+# =============================================================================
+mcp_enabled: true
+mcp_timeout: 120
+
+# =============================================================================
+# Skills Settings
+# =============================================================================
+skills_enabled: true
+skills_dir: ~/.zueshammer/skills
+skills_auto_load: true
+
+# =============================================================================
+# Browser Settings
+# =============================================================================
+browser_enabled: false
+browser_provider: playwright
+browser_headless: true
+
+# =============================================================================
+# Logging
+# =============================================================================
+log_level: INFO
+log_file: ~/.zueshammer/logs

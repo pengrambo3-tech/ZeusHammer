@@ -146,7 +146,7 @@ echo "API_PROVIDER=anthropic" >> ~/.zueshammer/.env
 echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
 ```
 
-### Option 3: OpenAI
+### Option 4: OpenAI
 
 ```bash
 echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
@@ -190,6 +190,57 @@ OPENAI_API_KEY=sk-your-key
 API_PROVIDER=openai
 MODEL=gpt-4o
 ```
+
+---
+
+## Advanced: OpenClaw-Style Multi-Model Configuration
+
+For power users, ZuesHammer supports OpenClaw-style multi-model routing with automatic failover.
+
+### Multi-Provider Configuration
+
+Copy `config/example_config.yaml` to `~/.zueshammer/config.yaml`:
+
+```yaml
+models:
+  default_provider: claude
+
+  providers:
+    claude:
+      api_key: ${ANTHROPIC_API_KEY}
+      model: claude-3-5-sonnet-20241022
+      priority: 1
+
+    china:
+      api_base: https://api.chinawhapi.com/v1
+      api_key: ${CHINAWHAPI_KEY}
+      model: deepseek-chat
+      priority: 3
+
+  # Auto-routing by keywords
+  routing_rules:
+    - keywords: [code, debug, 编程]
+      provider: claude
+      model: claude-opus-4-5
+
+    - keywords: [search, 搜索]
+      provider: china
+      model: deepseek-chat
+
+  # Failover chain
+  fallback:
+    - provider: claude
+      model: claude-3-5-haiku-20241022
+```
+
+### Routing Features
+
+| Feature | Description |
+|---------|-------------|
+| **Keyword Routing** | Auto-select model based on query keywords |
+| **Task Type Routing** | Code → Claude, Search → DeepSeek |
+| **Failover** | Auto-switch when rate limited |
+| **Multi-Provider** | Use multiple APIs simultaneously |
 
 ---
 
