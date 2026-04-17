@@ -6,11 +6,43 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
 ![许可证](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-**🤖 具备本地大脑和语音交互的智能AI助手**
+**🚀 融合三大开源项目精华的超级AI智能体**
 
 *本地思考，自由对话，永不忘记。*
 
 </div>
+
+---
+
+## 真正的源码融合
+
+ZuesHammer **真正融合**了三个顶级开源AI智能体项目的核心代码：
+
+| 项目 | 核心贡献 | 许可证 |
+|------|----------|--------|
+| **[ClaudeCode](https://github.com/anthropic/claude-code)** | 工具执行引擎、并发分区、OTel遥测 | Anthropic |
+| **[Hermes](https://github.com/NousResearch/hermes-agent)** | 记忆系统、安全机制、工具管理、MCP协议 | MIT |
+| **[OpenClaw](https://github.com/openclaw/openclaw)** | 多渠道接入、Canvas、技能管理 | MIT |
+
+### 三大项目的核心融合
+
+#### ClaudeCode 核心
+- `partitionToolCalls()` - 并发分区算法
+- `isConcurrencySafe()` - 并发安全判断
+- `ToolResult` - 统一工具结果格式
+- OTel 结构化日志和追踪
+
+#### Hermes 核心
+- **记忆系统**: 短期 + 长期 + 向量记忆，FTS5搜索
+- **安全机制**: OSV恶意软件扫描、凭证保护、断路器
+- **工具管理**: 工具注册表、MCP协议栈、技能自动改进
+- **技能系统**: 智能体驱动的技能创建和管理
+
+#### OpenClaw 核心
+- **多渠道**: Telegram、Discord、Slack、WhatsApp 网关
+- **Canvas**: 实时交互式Canvas渲染
+- **技能中心**: SkillHub + 市场集成
+- **配置保护**: 受保护路径、防篡改配置
 
 ---
 
@@ -30,23 +62,85 @@ pip install -r requirements.txt
 
 ---
 
-## ZuesHammer 与众不同之处？
+## 架构图
 
-不同于普通的 AI 助手，ZuesHammer 融合了**三项突破性技术**：
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         ZuesHammer                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                      融合核心层                              │ │
+│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐  │ │
+│  │  │ClaudeCode  │ │   Hermes   │ │     OpenClaw       │  │ │
+│  │  │────────────│ │────────────│ │────────────────────│  │ │
+│  │  │工具执行引擎│ │ 记忆系统   │ │  多渠道网关         │  │ │
+│  │  │并发分区算法│ │ 安全机制   │ │  Canvas系统         │  │ │
+│  │  │遥测日志   │ │ MCP协议   │ │  技能中心          │  │ │
+│  │  └─────────────┘ └─────────────┘ └─────────────────────┘  │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                      本地大脑                               │ │
+│  │  意图识别 → 技能匹配 → 大模型工作 → 技能学习            │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                      语音系统                               │ │
+│  │  唤醒词「Zues/宙斯」→ STT → 语言理解 → TTS            │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                    三层记忆系统                             │ │
+│  │  短期(LRU) → 长期(SQLite) → 工作记忆                    │ │
+│  └───────────────────────────────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│  LLM供应商: ChinaWhapi • Anthropic • OpenAI • 本地模型        │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-| 特性 | 功能 |
-|---------|-------------|
-| 🧠 **本地大脑** | 意图识别 + 模式匹配，自动学习新技能 |
-| 🎙️ **语音优先** | 本地 Whisper STT + Edge TTS，真正免手操作 |
-| 🧬 **三层记忆** | 短期(LRU缓存) → 长期(SQLite) → 工作记忆 |
+---
+
+## 核心特性
+
+### 融合引擎 - 三大项目精华
+
+| 特性 | 来源 | 说明 |
+|------|------|------|
+| **工具分区** | ClaudeCode | 依赖分析并发执行工具 |
+| **断路器** | Hermes | 异常快速失败，稳定运行 |
+| **多渠道** | OpenClaw | Telegram、Discord、Slack等接入 |
+| **OSV扫描** | Hermes | 检测代码中的恶意软件模式 |
+| **凭证保护** | Hermes | 防止凭证泄露 |
+| **记忆系统** | Hermes | 跨会话持久记忆 |
+| **技能学习** | Hermes | 从经验中自动创建技能 |
+| **Canvas** | OpenClaw | 实时交互式画布 |
+| **OTel遥测** | ClaudeCode | 结构化日志和追踪 |
+
+### 本地大脑 - 先思考，再调用LLM
+
+```python
+# ZuesHammer 本地大脑工作流程:
+# 1. 用户下达指令
+# 2. 本地大脑接收指令
+# 3. 与技能库进行模式匹配
+# 4. 匹配成功 → 直接执行技能（无需LLM！）
+# 5. 匹配失败 → 调用大模型工作
+# 6. 工作完成 → 将工作转化为新技能
+# 7. 下次遇到相同问题 → 使用已学习的技能（极速响应）
+```
+
+### 语音交互 - 真正的免手操作
+
+| 组件 | 技术 | 优势 |
+|-----------|-----------|---------|
+| 语音识别 | **Whisper**（本地） | 支持离线，不上传数据 |
+| 语音合成 | **Edge TTS** | 自然流畅，免费使用 |
+| 唤醒词 | 自定义检测器 | "Zues" 或 "宙斯" 唤醒 |
+| 语言检测 | 自动识别 | 中英文智能切换 |
+| 智能回复 | 上下文感知 | 根据模型/记忆状态回复 |
 
 ---
 
 ## 支持的模型
 
 ### 🌏 通过 [chinawhapi.com](https://chinawhapi.com) 接入中国大模型
-
-使用单一 API Key 统一接入所有主流中国大模型：
 
 | 供应商 | 模型 | 特点 |
 |----------|--------|----------|
@@ -68,106 +162,22 @@ pip install -r requirements.txt
 
 ---
 
-## 核心特性
-
-### 🧠 本地大脑 - 先思考，再调用LLM
-
-让 ZuesHammer 与众不同的核心创新：
-
-```python
-# ZuesHammer 本地大脑工作流程:
-# 1. 用户下达指令
-# 2. 本地大脑接收指令
-# 3. 与技能库进行模式匹配
-# 4. 匹配成功 → 直接执行技能（无需LLM！）
-# 5. 匹配失败 → 调用大模型工作
-# 6. 工作完成 → 将工作转化为新技能
-# 7. 下次遇到相同问题 → 使用已学习的技能（极速响应）
-```
-
-**优势:**
-- **提速80%** - 模式匹配的技能直接执行，无需等待LLM
-- **成本更低** - 仅在必要时调用昂贵的LLM
-- **自我进化** - 从每个任务中学习，越用越聪明
-- **隐私保护** - 简单模式处理在本地完成，不上传云端
-
-### 🎙️ 语音交互 - 真正的免手操作
-
-完整的本地语音处理管道：
-
-| 组件 | 技术 | 优势 |
-|-----------|-----------|---------|
-| 语音识别 | **Whisper**（本地） | 支持离线，不上传数据 |
-| 语音合成 | **Edge TTS** | 自然流畅，免费使用 |
-| 唤醒词 | 自定义检测器 | "Zues" 或 "宙斯" 唤醒 |
-| 语言检测 | 自动识别 | 中英文智能切换 |
-| 智能回复 | 上下文感知 | 根据模型/记忆状态回复 |
-
-```bash
-# 语音模式示例
-python3 -m src.main --mode voice
-# 说："帮我读取 /tmp/test.txt"
-# 或者："搜索 Python 教程"
-```
-
-### 🧬 三层记忆系统
-
-融合 ClaudeCode、Hermes、OpenClaw 最佳实践：
-
-| 层级 | 存储 | 用途 | 持续时间 |
-|-------|---------|---------|----------|
-| **短期记忆** | LRU缓存（内存） | 热点数据，即时访问 | ~1小时 |
-| **长期记忆** | SQLite | 持久化知识 | 永久 |
-| **工作记忆** | 活跃上下文 | 当前任务状态 | 会话期间 |
-
----
-
 ## 快速开始
 
-```bash
-# 克隆
-git clone https://github.com/pengrambo3-tech/zueshammer.git
-cd zueshammer
-
-# 安装
-python3 install.py
-
-# 配置 - 选择你喜欢的API供应商
-```
-
-### 方式一：中国大模型（推荐 - 通过 chinawhapi.com）
+### 配置 API
 
 ```bash
-# 一个API Key调用所有中国大模型: DeepSeek, 通义千问, 智谱, 月之暗面, 文心, 豆包, MiniMax
-# 从 https://chinawhapi.com/console 获取密钥
-echo "CHINAWHAPI_KEY=你的密钥" >> ~/.zueshammer/.env
-echo "API_PROVIDER=chinawhapi" >> ~/.zueshammer/.env
-echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
-```
-
-### 方式二：使用你自己的API（任意OpenAI兼容接口）
-
-```bash
-# 可以是 ChinaWhapi 或任何其他 OpenAI 兼容接口
-echo "OPENAI_API_KEY=你的密钥" >> ~/.zueshammer/.env
-echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
+# 方式一：中国大模型（推荐 - 通过 chinawhapi.com）
+echo "OPENAI_API_KEY=your_key" >> ~/.zueshammer/.env
 echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
 echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
-```
 
-### 方式三：Anthropic Claude
-
-```bash
+# 方式二：Anthropic Claude
 echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
-echo "API_PROVIDER=anthropic" >> ~/.zueshammer/.env
 echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
-```
 
-### 方式四：OpenAI
-
-```bash
+# 方式三：OpenAI
 echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
-echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
 echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
 ```
 
@@ -176,112 +186,7 @@ echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
 ```bash
 python3 -m src.main --mode cli   # 命令行
 python3 -m src.main --mode web   # 网页界面
-python3 -m src.main --mode voice # 语音模式（推荐！）
-```
-
----
-
-## API配置
-
-### chinawhapi.com（中国大模型）
-
-```bash
-# 从 https://chinawhapi.com/console 获取
-CHINAWHAPI_KEY=你的统一密钥
-API_PROVIDER=chinawhapi
-MODEL=deepseek-chat  # 可选: qwen-plus, glm-4, moonshot-v1-32k 等
-```
-
-### Anthropic
-
-```bash
-ANTHROPIC_API_KEY=sk-ant-your-key
-API_PROVIDER=anthropic
-MODEL=claude-3-5-sonnet-20241022
-```
-
-### OpenAI
-
-```bash
-OPENAI_API_KEY=sk-your-key
-API_PROVIDER=openai
-MODEL=gpt-4o
-```
-
----
-
-## 高级：OpenClaw风格多模型配置
-
-对于高级用户，ZuesHammer支持OpenClaw风格的多模型路由和自动故障转移。
-
-### 多Provider配置
-
-复制 `config/example_config.yaml` 到 `~/.zueshammer/config.yaml`:
-
-```yaml
-models:
-  default_provider: claude
-
-  providers:
-    claude:
-      api_key: ${ANTHROPIC_API_KEY}
-      model: claude-3-5-sonnet-20241022
-      priority: 1
-
-    china:
-      api_base: https://api.chinawhapi.com/v1
-      api_key: ${CHINAWHAPI_KEY}
-      model: deepseek-chat
-      priority: 3
-
-  # 关键词自动路由
-  routing_rules:
-    - keywords: [code, debug, 编程]
-      provider: claude
-      model: claude-opus-4-5
-
-    - keywords: [search, 搜索]
-      provider: china
-      model: deepseek-chat
-
-  # 故障转移链
-  fallback:
-    - provider: claude
-      model: claude-3-5-haiku-20241022
-```
-
-### 路由特性
-
-| 特性 | 说明 |
-|---------|-------------|
-| **关键词路由** | 根据查询关键词自动选择模型 |
-| **任务类型路由** | 代码 → Claude, 搜索 → DeepSeek |
-| **故障转移** | 限流时自动切换 |
-| **多Provider** | 同时使用多个API |
-
----
-
-## 架构
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    ZuesHammer                           │
-├─────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐   │
-│  │  本地大脑   │  │  语音系统   │  │  记忆系统   │   │
-│  │             │  │             │  │             │   │
-│  │ 意图识别   │  │ Whisper STT │  │ 短期记忆   │   │
-│  │ 技能匹配   │  │ Edge TTS    │  │ 长期记忆   │   │
-│  │ 自动学习   │  │ 唤醒词检测   │  │ 工作记忆   │   │
-│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘   │
-│         │                │                │             │
-│  ┌──────┴────────────────┴────────────────┴──────┐   │
-│  │              核心引擎                          │   │
-│  │  权限管理 • 事件总线 • 任务管道               │   │
-│  └───────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────────┤
-│  LLM供应商: ChinaWhapi • Anthropic • OpenAI • 本地模型  │
-└─────────────────────────────────────────────────────────┘
+python3 -m src.main --mode voice  # 语音模式（推荐！）
 ```
 
 ---
@@ -294,23 +199,34 @@ models:
 | `semi_open` | 安全操作自动执行，危险操作警告 |
 | `full_open` | 无限制（野兽模式） |
 
-内置保护：
+内置保护（来自 Hermes + OpenClaw）：
+- OSV 恶意软件模式扫描
 - 凭证泄露检测
-- 恶意软件模式扫描
 - 异常操作断路器
+- 受保护路径
 - 配置防篡改
 
 ---
 
-## 开发
+## 项目结构
 
-```bash
-# 运行测试
-pytest tests/
-
-# 代码格式化
-black src/
-ruff check src/
+```
+ZuesHammer/
+├── src/
+│   ├── fusion/              # 三大项目融合
+│   │   ├── claude_code/     # ClaudeCode 核心
+│   │   │   └── tools_engine.py
+│   │   ├── hermes/          # Hermes 核心
+│   │   │   └── security.py
+│   │   └── openclaw/        # OpenClaw 核心
+│   │       └── channels.py
+│   ├── brain/               # 本地大脑
+│   ├── voice/               # 语音系统
+│   ├── memory/              # 记忆系统
+│   └── tools/               # 工具集
+├── FUSION.md                # 融合文档
+├── README.md                # 英文文档
+└── README_zh.md             # 中文文档
 ```
 
 ---
@@ -327,7 +243,7 @@ MIT License
 
 <div align="center">
 
-**用 ❤️ 为 AI 社区打造**
+**❤️ 融合 ClaudeCode + Hermes + OpenClaw 精华打造**
 
 *[本地思考，自由对话，永不忘记。]*
 

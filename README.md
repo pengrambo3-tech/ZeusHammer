@@ -6,7 +6,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-**The AI Agent with Local Brain, Voice Interaction & Three-Tier Memory**
+**The Super AI Agent Built from Three Open Source Giants**
 
 *Think Locally. Speak Freely. Remember Everything.*
 
@@ -14,6 +14,38 @@
 [![Fork](https://img.shields.io/github/forks/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/zueshammer)
 
 </div>
+
+---
+
+## Fusion of Three Open Source Projects
+
+ZuesHammer is a **true fusion** of three top-tier open source AI agent projects, combining their best features into one unified super agent:
+
+| Project | Core Contribution | License |
+|---------|------------------|---------|
+| **[ClaudeCode](https://github.com/anthropics/claude-code)** | Tool execution engine, concurrent partitioning, OTel telemetry | Anthropic |
+| **[Hermes](https://github.com/NousResearch/hermes-agent)** | Memory system, security, tools, MCP protocol | MIT |
+| **[OpenClaw](https://github.com/openclaw/openclaw)** | Multi-channel gateway, Canvas, skills management | MIT |
+
+### What Each Project Brings
+
+#### ClaudeCode Core
+- `partitionToolCalls()` - Concurrent partitioning algorithm
+- `isConcurrencySafe()` - Concurrency safety checks
+- `ToolResult` - Unified tool result format
+- OTel structured logging and tracing
+
+#### Hermes Core
+- **Memory System**: Short-term + Long-term + Vector memory with FTS5 search
+- **Security**: OSV malware scanner, credential guard, circuit breaker
+- **Tools**: Tool registry, MCP protocol stack, skill auto-improvement
+- **Skills**: Agent-curated skill creation and management
+
+#### OpenClaw Core
+- **Multi-Channel**: Telegram, Discord, Slack, WhatsApp gateway
+- **Canvas**: Live Canvas rendering system
+- **Skills**: SkillHub with marketplace integration
+- **Config**: Protected paths and tamper-proof configuration
 
 ---
 
@@ -33,23 +65,87 @@ pip install -r requirements.txt
 
 ---
 
-## What Makes ZuesHammer Different?
+## Architecture
 
-Unlike typical AI agents, ZuesHammer combines **three breakthrough technologies**:
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         ZuesHammer                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                    Fusion Core                              │ │
+│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐  │ │
+│  │  │ClaudeCode  │ │  Hermes     │ │     OpenClaw        │  │ │
+│  │  │────────────│ │────────────│ │────────────────────│  │ │
+│  │  │Tool Engine │ │  Memory    │ │  Channel Gateway   │  │ │
+│  │  │Partition   │ │  Security  │ │  Canvas System     │  │ │
+│  │  │Telemetry   │ │  MCP       │ │  Skills Hub        │  │ │
+│  │  └─────────────┘ └─────────────┘ └─────────────────────┘  │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                    Local Brain                             │ │
+│  │  Intent Recognition → Skill Match → LLM Work → Learn     │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                    Voice System                            │ │
+│  │  Wake Word "Zues/宙斯" → STT → Language → TTS          │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐ │
+│  │                Three-Tier Memory                           │ │
+│  │  Short-term (LRU) → Long-term (SQLite) → Working        │ │
+│  └───────────────────────────────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│  LLM Providers: ChinaWhapi • Anthropic • OpenAI • Local      │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-| Feature | What It Does |
-|---------|-------------|
-| 🧠 **Local Brain** | Intent recognition & pattern matching that learns new skills automatically |
-| 🎙️ **Voice-First** | Local Whisper STT + Edge TTS for true hands-free operation |
-| 🧬 **Three-Tier Memory** | Short-term (LRU cache) → Long-term (SQLite) → Working memory |
+---
+
+## Key Features
+
+### Fusion Engine - Best of Three Worlds
+
+The fusion brings together the most powerful features from each project:
+
+| Feature | From | Description |
+|---------|------|-------------|
+| **Tool Partition** | ClaudeCode | Concurrent tool execution with dependency analysis |
+| **Circuit Breaker** | Hermes | Fail-fast pattern for stable operation |
+| **Multi-Channel** | OpenClaw | Connect via Telegram, Discord, Slack, etc. |
+| **OSV Scanner** | Hermes | Detect malware patterns in code |
+| **Credential Guard** | Hermes | Prevent credential leakage |
+| **Memory System** | Hermes | Persistent cross-session memory |
+| **Skill Learning** | Hermes | Auto-create skills from experience |
+| **Canvas** | OpenClaw | Live interactive canvas |
+| **OTel Telemetry** | ClaudeCode | Structured logging and tracing |
+
+### Local Brain - Think Before Asking LLM
+
+```python
+# ZuesHammer's Local Brain workflow:
+1. User gives instruction
+2. Local Brain receives instruction
+3. Pattern matching against skill library
+4. Match found → Execute skill directly (NO LLM needed!)
+5. No match → Call LLM for solution
+6. Work complete → Learn new skill
+7. Next time → Use learned skill (instant, no LLM)
+```
+
+### Voice Interaction - True Hands-Free
+
+| Component | Technology | Benefit |
+|-----------|-----------|---------|
+| Speech-to-Text | **Whisper** (local) | Offline capable, no data sent |
+| Text-to-Speech | **Edge TTS** | Natural, free voices |
+| Wake Word | Custom detector | "Zues" or "宙斯" activation |
+| Language Detection | Auto-detection | Auto-switch Chinese/English |
+| Smart Responses | Context-aware | Reply based on model/memory status |
 
 ---
 
 ## Supported Models
 
 ### China LLM via [chinawhapi.com](https://chinawhapi.com)
-
-Unified API access to all major Chinese LLMs with **single key**:
 
 | Provider | Models | Features |
 |----------|--------|----------|
@@ -71,60 +167,6 @@ Unified API access to all major Chinese LLMs with **single key**:
 
 ---
 
-## Key Features
-
-### Local Brain - Think Before Asking LLM
-
-The core innovation that sets ZuesHammer apart:
-
-```
-# ZuesHammer's Local Brain workflow:
-1. User gives instruction
-2. Local Brain receives instruction
-3. Pattern matching against skill library
-4. Match found → Execute skill directly (NO LLM needed!)
-5. No match → Call LLM for solution
-6. Work complete → Learn new skill
-7. Next time → Use learned skill (instant, no LLM)
-```
-
-**Benefits:**
-- **80% faster** for common tasks (pattern-matched skills run instantly)
-- **Cost efficient** - Only calls expensive LLM when needed
-- **Self-improving** - Learns from every task, gets smarter over time
-- **Privacy-first** - Simple patterns never leave your machine
-
-### Voice Interaction - Real Hands-Free
-
-Complete voice pipeline running locally:
-
-| Component | Technology | Benefit |
-|-----------|-----------|---------|
-| Speech-to-Text | **Whisper** (local) | Offline capable, no data sent |
-| Text-to-Speech | **Edge TTS** | Natural, free voices |
-| Wake Word | Custom detector | "Zues" or "宙斯" activation |
-| Language Detection | Auto-detection | Auto-switch Chinese/English |
-| Smart Responses | Context-aware | Reply based on model/memory status |
-
-```bash
-# Voice mode examples
-python3 -m src.main --mode voice
-# Say: "帮我读取 /tmp/test.txt"
-# Or: "search for Python tutorials"
-```
-
-### Three-Tier Memory System
-
-Inspired by ClaudeCode, Hermes, and OpenClaw best practices:
-
-| Layer | Storage | Purpose | Duration |
-|-------|---------|---------|----------|
-| **Short-term** | LRU Cache (RAM) | Hot data, instant access | ~1 hour |
-| **Long-term** | SQLite | Persistent knowledge | Forever |
-| **Working** | Active context | Current task state | Session |
-
----
-
 ## Quick Start
 
 ### Configure API
@@ -137,12 +179,10 @@ echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
 
 # Option 2: Anthropic Claude
 echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
-echo "API_PROVIDER=anthropic" >> ~/.zueshammer/.env
 echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
 
 # Option 3: OpenAI
 echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
-echo "API_PROVIDER=openai" >> ~/.zueshammer/.env
 echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
 ```
 
@@ -156,82 +196,6 @@ python3 -m src.main --mode voice # Voice (recommended!)
 
 ---
 
-## Advanced: OpenClaw-Style Multi-Model Configuration
-
-For power users, ZuesHammer supports OpenClaw-style multi-model routing with automatic failover.
-
-### Multi-Provider Configuration
-
-Copy `config/example_config.yaml` to `~/.zueshammer/config.yaml`:
-
-```yaml
-models:
-  default_provider: claude
-
-  providers:
-    claude:
-      api_key: ${ANTHROPIC_API_KEY}
-      model: claude-3-5-sonnet-20241022
-      priority: 1
-
-    china:
-      api_base: https://api.chinawhapi.com/v1
-      api_key: ${CHINAWHAPI_KEY}
-      model: deepseek-chat
-      priority: 3
-
-  # Auto-routing by keywords
-  routing_rules:
-    - keywords: [code, debug, 编程]
-      provider: claude
-      model: claude-opus-4-5
-
-    - keywords: [search, 搜索]
-      provider: china
-      model: deepseek-chat
-
-  # Failover chain
-  fallback:
-    - provider: claude
-      model: claude-3-5-haiku-20241022
-```
-
-### Routing Features
-
-| Feature | Description |
-|---------|-------------|
-| **Keyword Routing** | Auto-select model based on query keywords |
-| **Task Type Routing** | Code → Claude, Search → DeepSeek |
-| **Failover** | Auto-switch when rate limited |
-| **Multi-Provider** | Use multiple APIs simultaneously |
-
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    ZuesHammer                           │
-├─────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐   │
-│  │ Local Brain │  │Voice System│  │Memory System│   │
-│  │             │  │             │  │             │   │
-│  │ Intent Recog│  │Whisper STT  │  │ Short-term  │   │
-│  │ Skill Match │  │ Edge TTS    │  │ Long-term   │   │
-│  │ Auto Learn  │  │ Wake Word   │  │ Working     │   │
-│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘   │
-│         │                │                │             │
-│  ┌──────┴────────────────┴────────────────┴──────┐   │
-│  │              Core Engine                       │   │
-│  │  Permission • Event Bus • Pipeline            │   │
-│  └───────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────────┤
-│  LLM Providers: ChinaWhapi • Anthropic • OpenAI • Local │
-└─────────────────────────────────────────────────────────┘
-```
-
----
-
 ## Security
 
 | Level | Description |
@@ -240,10 +204,11 @@ models:
 | `semi_open` | Safe operations auto-execute, dangerous operations warn |
 | `full_open` | Unrestricted (beast mode) |
 
-Built-in protections:
+Built-in protections (from Hermes):
+- OSV malware pattern scanning
 - Credential leakage detection
-- Malware pattern scanning
 - Circuit breaker for abnormal operations
+- Protected paths from OpenClaw
 - Config tamper protection
 
 ---
@@ -261,6 +226,29 @@ ruff check src/
 
 ---
 
+## Project Structure
+
+```
+ZuesHammer/
+├── src/
+│   ├── fusion/              # Three project fusion
+│   │   ├── claude_code/     # ClaudeCode core
+│   │   │   └── tools_engine.py
+│   │   ├── hermes/          # Hermes core
+│   │   │   └── security.py
+│   │   └── openclaw/        # OpenClaw core
+│   │       └── channels.py
+│   ├── brain/               # Local brain
+│   ├── voice/               # Voice system
+│   ├── memory/              # Memory system
+│   └── tools/               # Tools
+├── FUSION.md                # Fusion documentation
+├── README.md
+└── README_zh.md
+```
+
+---
+
 ## Contributing
 
 Issues and Pull Requests welcome!
@@ -273,7 +261,7 @@ MIT License
 
 <div align="center">
 
-**Built with ❤️ for the AI Community**
+**Built with ❤️ by fusing ClaudeCode + Hermes + OpenClaw**
 
 *[Think Locally. Speak Freely. Remember Everything.]*
 
