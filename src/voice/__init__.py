@@ -3,7 +3,7 @@ ZuesHammer Voice Module
 """
 
 from .voice_system import (
-    VoiceInteraction,
+    VoiceInteraction as VoiceInteractionSTT,
     LanguageDetector,
     WhisperSTT,
     EdgeTTS,
@@ -12,6 +12,7 @@ from .voice_system import (
 )
 
 from .wake_word import (
+    VoiceInteraction,
     VoiceManager,
     WakeWordDetector,
     VoiceMemory,
@@ -20,6 +21,7 @@ from .wake_word import (
 
 __all__ = [
     "VoiceInteraction",
+    "VoiceInteractionSTT",
     "LanguageDetector",
     "WhisperSTT",
     "EdgeTTS",

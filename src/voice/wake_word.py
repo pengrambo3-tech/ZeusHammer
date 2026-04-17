@@ -189,11 +189,15 @@ class VoiceMemory:
         if not self.memory:
             return
 
-        # 从记忆系统加载
-        profiles_data = self.memory.recall("voice_profiles")
-        if profiles_data:
-            for user_id, data in profiles_data.items():
-                self._profiles[user_id] = VoiceProfile(**data)
+        try:
+            # 从记忆系统加载
+            profiles_data = self.memory.recall("voice_profiles")
+            if profiles_data:
+                for user_id, data in profiles_data.items():
+                    self._profiles[user_id] = VoiceProfile(**data)
+        except Exception:
+            # 忽略加载错误（可能数据库只读）
+            pass
 
     def _save_profiles(self):
         """保存声音档案"""
@@ -811,7 +815,7 @@ class VoiceManager:
                 "必要时，我会调用大模型来工作。"
                 "完成工作后，我会学习并存储新的技能。"
                 "下次你问类似的问题，我可以直接回答！"
-                "你可以用语音和我对话，只需说"宙斯"或"ZUES"来唤醒我。"
+                "你可以用语音和我对话，只需说「宙斯」或「ZUES」来唤醒我。"
                 "有什么我可以帮你的吗？"
             )
         elif has_model and not has_memory:
@@ -820,7 +824,7 @@ class VoiceManager:
                 "我已经准备好帮助你。"
                 "我可以调用大模型来协助你完成任何任务。"
                 "我们一起工作后，我会学习和记住你的偏好。"
-                "你可以用语音和我对话，只需说"宙斯"或"ZUES"来唤醒我。"
+                "你可以用语音和我对话，只需说「宙斯」或「ZUES」来唤醒我。"
                 "有什么我可以帮你的吗？"
             )
         elif not has_model and has_memory:
@@ -828,7 +832,7 @@ class VoiceManager:
                 "你好！我是宙斯，你的超级助手。"
                 "我目前无法访问大模型，但我有我们之前对话的记忆。"
                 "我可以使用记忆库来帮助你完成任务。"
-                "你可以用语音和我对话，只需说"宙斯"或"ZUES"来唤醒我。"
+                "你可以用语音和我对话，只需说「宙斯」或「ZUES」来唤醒我。"
                 "有什么我可以帮你的吗？"
             )
         else:
@@ -836,7 +840,7 @@ class VoiceManager:
             return (
                 "你好！我是宙斯，你的超级助手。"
                 "我目前没有记忆，请给我配置模型进行学习。"
-                "你可以用语音和我对话，只需说"宙斯"或"ZUES"来唤醒我。"
+                "你可以用语音和我对话，只需说「宙斯」或「ZUES」来唤醒我。"
                 "有什么我可以帮你的吗？"
             )
 
