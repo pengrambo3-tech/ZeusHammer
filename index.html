@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZeusHammer - The Ultimate AI Agent</title>
-    <meta name="description" content="The AI Agent with Local Brain, Voice Interaction, and Three-Tier Memory. Think locally, speak freely, remember everything.">
+    <meta name="description" content="ZeusHammer - The Super AI Agent built from ClaudeCode + Hermes + OpenClaw. Local Brain, Voice-First, Three-Tier Memory. 80% tasks without LLM.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #030308;
             --bg-dark: #0a0a12;
             --bg-card: rgba(15, 15, 25, 0.85);
             --accent-cyan: #00f0ff;
-            --accent-purple: #b829ff;
-            --accent-pink: #ff2d92;
-            --accent-gold: #ffd700;
+            --accent-purple: #a855f7;
+            --accent-gold: #fbbf24;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.6);
-            --glow-cyan: 0 0 40px rgba(0, 240, 255, 0.4);
-            --glow-purple: 0 0 40px rgba(184, 41, 255, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,540 +27,174 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
             background: var(--bg-deep);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Particle Canvas */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(3, 3, 8, 0.9);
-            backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+            background: rgba(3, 3, 8, 0.95); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
         }
 
-        .logo {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            text-shadow: var(--glow-cyan);
-            letter-spacing: 2px;
-        }
-
+        .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; color: var(--accent-cyan); letter-spacing: 2px; }
         .logo span { color: var(--accent-purple); }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-        }
-        .nav-links a:hover { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; transition: all 0.3s; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-cyan); }
 
-        /* Hero Section */
+        section { padding: 6rem 2rem; position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            z-index: 1;
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 8rem 2rem 4rem; position: relative;
         }
 
         .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(ellipse at 30% 20%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(184, 41, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 45, 146, 0.05) 0%, transparent 60%);
+                radial-gradient(ellipse at 30% 20%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
             z-index: -1;
         }
 
         .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
-            z-index: -1;
-            animation: gridMove 20s linear infinite;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: -1;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(80px, 80px); }
-        }
+        .version-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 50px; font-size: 0.8rem; color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 2rem; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.5rem;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
-            font-family: 'Share Tech Mono', monospace;
-            margin-bottom: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 700; line-height: 1; margin-bottom: 1rem; letter-spacing: 4px; text-transform: uppercase; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(0, 240, 255, 0.5); }
-        }
+        .hero h2 { font-size: 1.4rem; color: var(--accent-gold); font-weight: 500; margin-bottom: 1.5rem; letter-spacing: 3px; text-transform: uppercase; }
 
-        .hero h1 {
-            font-size: clamp(4rem, 12vw, 9rem);
-            font-weight: 700;
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-        }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 3rem; }
 
-        .hero h1 .zh {
-            display: block;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
-            filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.5));
-        }
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-        .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
-        }
+        .btn { padding: 0.9rem 2rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
 
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: var(--bg-deep); border: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0, 240, 255, 0.3); }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
+        .btn-secondary { background: transparent; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); }
+        .btn-secondary:hover { background: rgba(0, 240, 255, 0.1); }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: var(--bg-deep);
-            border: none;
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: var(--glow-cyan); }
+        .stats-bar { display: flex; justify-content: center; gap: 4rem; margin-top: 5rem; padding: 2rem; background: rgba(0, 240, 255, 0.03); border-top: 1px solid rgba(0, 240, 255, 0.1); border-bottom: 1px solid rgba(0, 240, 255, 0.1); }
 
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-        .btn-secondary:hover { background: rgba(0, 240, 255, 0.1); box-shadow: var(--glow-cyan); }
+        .stat-item { text-align: center; }
+        .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--accent-cyan); }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-top: 0.5rem; }
 
-        /* Stats Bar */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 4rem;
-            padding: 2rem;
-            background: rgba(0, 240, 255, 0.03);
-            border-top: 1px solid rgba(0, 240, 255, 0.1);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-        }
+        /* Section Headers */
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 0.5rem; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-secondary); font-size: 1.05rem; max-width: 550px; margin: 0 auto; }
 
-        .stat-item {
-            text-align: center;
-        }
+        /* Comparison Table */
+        .comparison-section { background: linear-gradient(180deg, transparent, rgba(168, 85, 247, 0.03), transparent); }
 
-        .stat-value {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            text-shadow: var(--glow-cyan);
-        }
+        .comparison-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 12px; overflow: hidden; font-size: 0.85rem; box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); }
 
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .comparison-table thead { background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15)); }
+        .comparison-table th { padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: var(--accent-cyan); border-bottom: 2px solid rgba(0, 240, 255, 0.2); }
+        .comparison-table th:first-child { text-align: left; }
+        .comparison-table th.highlight { background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(168, 85, 247, 0.1)); color: var(--accent-gold); }
 
-        /* Sections */
-        section {
-            padding: 6rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
+        .comparison-table td { padding: 0.9rem 0.8rem; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+        .comparison-table td:first-child { text-align: left; font-weight: 500; }
+        .comparison-table tr:hover { background: rgba(0, 240, 255, 0.03); }
+        .comparison-table tr:last-child td { border-bottom: none; }
 
-        .container { max-width: 1200px; margin: 0 auto; }
+        .check { color: var(--accent-green); font-size: 1.1rem; }
+        .cross { color: var(--accent-red); }
+        .partial { color: var(--accent-gold); font-size: 0.85rem; }
+        .zeushammer-col { background: rgba(251, 191, 36, 0.05); }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
+        /* Advantages Box */
+        .advantages-box { background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(168, 85, 247, 0.08)); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 12px; padding: 2rem; margin-top: 2.5rem; }
+        .advantages-box h3 { color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        .section-label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-purple);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-        }
+        .advantage-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; align-items: flex-start; }
+        .advantage-item .num { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--accent-cyan); min-width: 35px; }
+        .advantage-item h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .advantage-item p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
+        .weakness-box { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 1.2rem; margin-top: 1.5rem; }
+        .weakness-box h4 { color: var(--accent-red); margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .weakness-box p { color: var(--text-secondary); font-size: 0.85rem; }
 
-        .section-desc {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        /* Feature Cards */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
 
-        /* Feature Grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+        .feature-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.3); }
 
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 8px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
-            transform: scaleX(0);
-            transition: transform 0.4s;
-        }
-
-        .feature-card:hover::before { transform: scaleX(1); }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .feature-card:nth-child(1) .feature-icon {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 240, 255, 0.05));
-            border: 1px solid rgba(0, 240, 255, 0.3);
-        }
-        .feature-card:nth-child(2) .feature-icon {
-            background: linear-gradient(135deg, rgba(184, 41, 255, 0.2), rgba(184, 41, 255, 0.05));
-            border: 1px solid rgba(184, 41, 255, 0.3);
-        }
-        .feature-card:nth-child(3) .feature-icon {
-            background: linear-gradient(135deg, rgba(255, 45, 146, 0.2), rgba(255, 45, 146, 0.05));
-            border: 1px solid rgba(255, 45, 146, 0.3);
-        }
-        .feature-card:nth-child(4) .feature-icon {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .feature-tag {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: var(--accent-cyan);
-            margin-top: 1rem;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Architecture Section */
-        .arch-section {
-            background: linear-gradient(180deg, transparent, rgba(184, 41, 255, 0.03), transparent);
-        }
-
-        .arch-diagram {
-            background: var(--bg-card);
-            border: 1px solid rgba(184, 41, 255, 0.2);
-            border-radius: 12px;
-            padding: 3rem;
-            margin-top: 3rem;
-        }
-
-        .arch-layers {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .arch-layer {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-cyan);
-            transition: all 0.3s;
-        }
-
-        .arch-layer:hover {
-            background: rgba(0, 240, 255, 0.05);
-            transform: translateX(10px);
-        }
-
-        .arch-layer:nth-child(2) { border-left-color: var(--accent-purple); }
-        .arch-layer:nth-child(3) { border-left-color: var(--accent-pink); }
-        .arch-layer:nth-child(4) { border-left-color: var(--accent-gold); }
-
-        .arch-num {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.5rem;
-            color: var(--accent-cyan);
-            min-width: 50px;
-        }
-
-        .arch-content h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .arch-content p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+        .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+        .feature-tag { display: inline-block; padding: 0.3rem 0.7rem; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 4px; font-size: 0.7rem; color: var(--accent-cyan); margin-top: 1rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
 
         /* Install Section */
-        .install-section {
-            text-align: center;
-            padding: 8rem 2rem;
-        }
+        .install-box { background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(168, 85, 247, 0.08)); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; padding: 3rem; text-align: center; }
 
-        .install-box {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(184, 41, 255, 0.1));
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-            padding: 4rem 3rem;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .install-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .install-box h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .install-box .desc {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .install-cmd {
-            background: var(--bg-deep);
-            padding: 1.5rem 2rem;
-            border-radius: 8px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.1rem;
-            text-align: left;
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .install-cmd .prompt { color: var(--accent-green); margin-right: 0.5rem; }
+        .install-cmd { background: var(--bg-deep); padding: 1.2rem 1.5rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; text-align: left; border: 1px solid rgba(0, 240, 255, 0.2); display: inline-block; margin: 1.5rem 0; }
+        .install-cmd .prompt { color: var(--accent-green); }
         .install-cmd .cmd { color: var(--accent-cyan); }
 
-        /* Models Grid */
-        .models-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
+        .install-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; text-align: left; }
+        .install-method { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 8px; padding: 1.5rem; }
+        .install-method h4 { color: var(--accent-cyan); margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .install-method pre { background: var(--bg-deep); padding: 0.8rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; overflow-x: auto; }
 
-        .model-item {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
+        .uninstall-box { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 1.5rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .uninstall-box h4 { color: var(--accent-red); margin-bottom: 1rem; }
+        .uninstall-box pre { background: var(--bg-deep); padding: 0.8rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
 
-        .model-item:hover {
-            border-color: var(--accent-cyan);
-            transform: scale(1.05);
-        }
+        /* Usage Section */
+        .usage-section { background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.02), transparent); }
+        .usage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .usage-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 8px; padding: 1.5rem; }
+        .usage-card h4 { color: var(--accent-cyan); margin-bottom: 1rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .usage-card pre { background: var(--bg-deep); padding: 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; overflow-x: auto; }
+        .usage-card .comment { color: var(--text-secondary); }
+        .usage-card .cmd { color: var(--accent-cyan); }
 
-        .model-item h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-cyan);
-        }
-
-        .model-item p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
+        /* Models */
+        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .model-item { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 1.2rem; text-align: center; transition: all 0.3s; }
+        .model-item:hover { border-color: var(--accent-cyan); }
+        .model-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--accent-cyan); }
+        .model-item p { font-size: 0.75rem; color: var(--text-secondary); }
 
         /* Footer */
-        footer {
-            background: var(--bg-dark);
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(0, 240, 255, 0.1);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        footer p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        footer a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-        }
+        footer { background: var(--bg-dark); padding: 2.5rem 2rem; border-top: 1px solid rgba(0, 240, 255, 0.1); text-align: center; position: relative; z-index: 1; }
+        footer p { color: var(--text-secondary); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
+        footer a { color: var(--accent-cyan); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
 
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 3rem; letter-spacing: 4px; }
+            .hero h1 { font-size: 2.2rem; }
             .stats-bar { flex-wrap: wrap; gap: 2rem; }
             section { padding: 4rem 1.5rem; }
-            .section-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .comparison-table { font-size: 0.7rem; }
+            .comparison-table th, .comparison-table td { padding: 0.5rem 0.3rem; }
         }
     </style>
 </head>
@@ -571,10 +204,10 @@
     <nav>
         <a href="#" class="logo">ZH<span>|</span>ZeusHammer</a>
         <ul class="nav-links">
+            <li><a href="#comparison">Comparison</a></li>
             <li><a href="#features">Features</a></li>
-            <li><a href="#architecture">Architecture</a></li>
-            <li><a href="#models">Models</a></li>
             <li><a href="#install">Install</a></li>
+            <li><a href="#usage">Usage</a></li>
             <li><a href="https://github.com/pengrambo3-tech/ZeusHammer" target="_blank">GitHub</a></li>
         </ul>
     </nav>
@@ -583,35 +216,196 @@
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
         
-        <div class="hero-badge">v2.0.0 - Now Available</div>
+        <div class="version-badge">v2.0.0 — Built from 3 Open Source Giants</div>
         
-        <h1>
-            <span class="zh">ZeusHammer</span>
-        </h1>
+        <h1>ZeusHammer</h1>
+        <h2>The Ultimate AI Agent</h2>
         
-        <p class="hero-subtitle">The Ultimate AI Agent with Local Brain, Voice Interaction & Three-Tier Memory. Think Locally. Speak Freely. Remember Everything.</p>
+        <p class="hero-subtitle">The Super AI Agent built from ClaudeCode + Hermes + OpenClaw. Local Brain, Voice-First, Three-Tier Memory. 80% of tasks complete without calling LLM APIs.</p>
         
         <div class="hero-cta">
-            <a href="https://github.com/pengrambo3-tech/ZeusHammer" class="btn btn-primary">Get Started</a>
-            <a href="#features" class="btn btn-secondary">Explore Features</a>
+            <a href="#install" class="btn btn-primary">Install Now</a>
+            <a href="#comparison" class="btn btn-secondary">View Comparison</a>
         </div>
 
         <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-value">50+</div>
-                <div class="stat-label">Built-in Skills</div>
+            <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Built-in Tools</div></div>
+            <div class="stat-item"><div class="stat-value">80%</div><div class="stat-label">Tasks Without LLM</div></div>
+            <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Memory Tiers</div></div>
+            <div class="stat-item"><div class="stat-value">10+</div><div class="stat-label">LLM Models</div></div>
+        </div>
+    </section>
+
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Why ZeusHammer?</div>
+                <h2 class="section-title">Feature Comparison</h2>
+                <p class="section-desc">Complete feature comparison with OpenClaw and Hermes</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">80%</div>
-                <div class="stat-label">Faster Execution</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">3</div>
-                <div class="stat-label">Memory Layers</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">10+</div>
-                <div class="stat-label">LLM Models</div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>OpenClaw</th>
+                        <th>Hermes</th>
+                        <th class="highlight">ZeusHammer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Local Brain</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Voice-First Design</td>
+                        <td><span class="partial">Partial</span></td>
+                        <td><span class="partial">Partial</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Three-Tier Memory</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Meditation Mode</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Deep Reflection</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>China LLM Native</td>
+                        <td><span class="partial">Config</span></td>
+                        <td><span class="partial">Partial</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tool Detector</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>OSV Malware Scan</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cost Tracking</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="partial">Partial</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>WebRTC Audio</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Skill Auto-Generation</td>
+                        <td><span class="cross">No</span></td>
+                        <td><span class="cross">No</span></td>
+                        <td class="zeushammer-col"><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Built-in Tools</td>
+                        <td>20+</td>
+                        <td>40+</td>
+                        <td class="zeushammer-col"><span class="check">50+</span></td>
+                    </tr>
+                    <tr>
+                        <td>Homebrew Install</td>
+                        <td>npm</td>
+                        <td>pip</td>
+                        <td class="zeushammer-col"><span class="check">brew</span></td>
+                    </tr>
+                    <tr>
+                        <td>Message Channels</td>
+                        <td>30+</td>
+                        <td>20+</td>
+                        <td>13+</td>
+                    </tr>
+                    <tr>
+                        <td>AI Models</td>
+                        <td>35+</td>
+                        <td>15+</td>
+                        <td>20+</td>
+                    </tr>
+                    <tr>
+                        <td>MCP Support</td>
+                        <td><span class="check">Yes</span></td>
+                        <td><span class="check">Yes</span></td>
+                        <td><span class="check">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td>Browser Automation</td>
+                        <td><span class="check">Yes</span></td>
+                        <td><span class="check">Yes</span></td>
+                        <td><span class="check">Yes</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="advantages-box">
+                <h3>ZeusHammer Key Advantages</h3>
+                
+                <div class="advantage-item">
+                    <div class="num">01</div>
+                    <div>
+                        <h4>Local Brain Architecture</h4>
+                        <p>80% of tasks complete via intent recognition + skill matching locally, without calling LLM APIs. Significantly reduces cost and improves response speed.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-item">
+                    <div class="num">02</div>
+                    <div>
+                        <h4>Voice-First Design</h4>
+                        <p>Complete voice-first experience: wake word, Whisper STT, Edge TTS, auto language detection. Supports background daemon mode.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-item">
+                    <div class="num">03</div>
+                    <div>
+                        <h4>Three-Tier Memory</h4>
+                        <p>Short-term (LRU) + Long-term (SQLite FTS5) + Working memory, plus Chroma vector store. Most complete memory capabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-item">
+                    <div class="num">04</div>
+                    <div>
+                        <h4>China LLM Native</h4>
+                        <p>Built-in unified clients for DeepSeek, Qwen, GLM, Moonshot, ERNIE, Doubao, MiniMax via chinawhapi.com.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-item">
+                    <div class="num">05</div>
+                    <div>
+                        <h4>Homebrew Installation</h4>
+                        <p>macOS users: <code style="background: var(--bg-deep); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace;">brew install zeushammer</code></p>
+                    </div>
+                </div>
+
+                <div class="weakness-box">
+                    <h4>Known Weaknesses</h4>
+                    <p>Ecosystem scale (400+ contributors vs new project). Message channels (13+) less than OpenClaw (30+) and Hermes (20+). Community maturity needs verification.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -619,98 +413,35 @@
     <section id="features">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Why ZeusHammer?</div>
-                <h2 class="section-title">ZeusHammer vs OpenClaw vs Hermes</h2>
-                <p class="section-desc">The most feature-complete AI agent that truly fuses the best of three major open-source projects.</p>
+                <div class="section-label">Core Features</div>
+                <h2 class="section-title">What We Offer</h2>
+                <p class="section-desc">Built from the best features of ClaudeCode, Hermes, and OpenClaw</p>
             </div>
 
-            <div class="comparison-table" style="overflow-x:auto; margin-top: 2rem;">
-                <table style="width:100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; font-size: 0.85rem;">
-                    <thead>
-                        <tr style="background: rgba(0, 240, 255, 0.1);">
-                            <th style="padding: 1rem; text-align: left; border-bottom: 1px solid rgba(0, 240, 255, 0.2); color: var(--accent-cyan);">Feature</th>
-                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2);">OpenClaw</th>
-                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2);">Hermes</th>
-                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2); color: var(--accent-gold);">ZeusHammer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Local Brain</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">80% tasks without LLM</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Voice-First</td>
-                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
-                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Whisper+Edge TTS</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Three-Tier Memory</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Short+Long+Working</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Meditation Mode</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Self-evolution</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">China LLM Support</td>
-                            <td style="padding: 0.8rem; text-align: center;">Needs Config</td>
-                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">DeepSeek/Qwen/GLM</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Tool Detector</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center;">❌</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Auto-detect 80+ CLI</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 0.8rem;">Built-in Tools</td>
-                            <td style="padding: 0.8rem; text-align: center;">20+</td>
-                            <td style="padding: 0.8rem; text-align: center;">40+</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ 50+</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem;">macOS Install</td>
-                            <td style="padding: 0.8rem; text-align: center;">npm</td>
-                            <td style="padding: 0.8rem; text-align: center;">pip</td>
-                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ Homebrew</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="feature-grid" style="margin-top: 4rem;">
+            <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">&#x1F9E0;</div>
+                    <div class="feature-icon">🧠</div>
                     <h3>Local Brain</h3>
-                    <p>Intent recognition and pattern matching that learns new skills automatically. 80% of common tasks run instantly without calling LLM.</p>
+                    <p>Intent recognition and pattern matching. Auto-learns new skills. 80% of common tasks complete without LLM calls.</p>
                     <span class="feature-tag">Self-Learning</span>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">&#x1F3A4;</div>
+                    <div class="feature-icon">🎤</div>
                     <h3>Voice-First</h3>
-                    <p>Local Whisper STT + Edge TTS for true hands-free operation. No data sent to cloud - fully offline capable.</p>
-                    <span class="feature-tag">Privacy-First</span>
+                    <p>Local Whisper STT + Edge TTS. True hands-free operation. No data sent to cloud. Fully offline capable.</p>
+                    <span class="feature-tag">Privacy First</span>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">&#x1F9EC;</div>
+                    <div class="feature-icon">💾</div>
                     <h3>Three-Tier Memory</h3>
-                    <p>Short-term (LRU cache) + Long-term (SQLite) + Working memory. Never forget important context.</p>
-                    <span class="feature-tag">24/7 Persistence</span>
+                    <p>Short-term (LRU) + Long-term (SQLite) + Working memory. Persistent cross-session context. Never forget.</p>
+                    <span class="feature-tag">24/7 Persistent</span>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">&#x1F30F;</div>
+                    <div class="feature-icon">🇨🇳</div>
                     <h3>China LLM Support</h3>
                     <p>Unified API via chinawhapi.com for DeepSeek, Qwen, GLM, Moonshot, ERNIE, Doubao, MiniMax.</p>
                     <span class="feature-tag">10+ Models</span>
@@ -719,44 +450,141 @@
         </div>
     </section>
 
-    <section id="architecture" class="arch-section">
+    <section id="install">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">System Design</div>
-                <h2 class="section-title">Architecture</h2>
-                <p class="section-desc">Inspired by ClaudeCode, Hermes, and OpenClaw best practices.</p>
+                <div class="section-label">Get Started</div>
+                <h2 class="section-title">Installation</h2>
+                <p class="section-desc">Choose the installation method that works for you</p>
             </div>
 
-            <div class="arch-diagram">
-                <div class="arch-layers">
-                    <div class="arch-layer">
-                        <div class="arch-num">01</div>
-                        <div class="arch-content">
-                            <h4>Input Layer</h4>
-                            <p>Voice (Whisper STT) / Text / API - Unified input processing</p>
-                        </div>
-                    </div>
-                    <div class="arch-layer">
-                        <div class="arch-num">02</div>
-                        <div class="arch-content">
-                            <h4>Local Brain</h4>
-                            <p>Intent recognition, pattern matching, skill execution</p>
-                        </div>
-                    </div>
-                    <div class="arch-layer">
-                        <div class="arch-num">03</div>
-                        <div class="arch-content">
-                            <h4>LLM Layer</h4>
-                            <p>Multi-provider routing, automatic failover, OpenClaw-style config</p>
-                        </div>
-                    </div>
-                    <div class="arch-layer">
-                        <div class="arch-num">04</div>
-                        <div class="arch-content">
-                            <h4>Output Layer</h4>
-                            <p>Voice (Edge TTS) / Text / Actions - Multi-modal output</p>
-                        </div>
-                    </div>
+            <div class="install-box">
+                <h3>Quick Install (macOS)</h3>
+                <div class="install-cmd">
+                    <span class="prompt">$</span> <span class="cmd">brew install zeushammer</span>
+                </div>
+            </div>
+
+            <div class="install-methods">
+                <div class="install-method">
+                    <h4>Homebrew (macOS)</h4>
+                    <pre><code>brew install zeushammer
+zeushammer --help</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>pipx (Cross-platform)</h4>
+                    <pre><code>pipx install zeushammer
+zeushammer --help</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>Docker</h4>
+                    <pre><code>docker pull zeushammer/zeushammer
+docker run -it zeushammer/zeushammer</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>cURL Script</h4>
+                    <pre><code>curl -sSL https://bit.ly/zeushammer | bash</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>Manual Install</h4>
+                    <pre><code>git clone https://github.com/pengrambo3-tech/ZeusHammer.git
+cd ZeusHammer
+pip install -r requirements.txt</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>Configure API</h4>
+                    <pre><code># Add to ~/.zeushammer/.env
+OPENAI_API_KEY=your_key
+API_BASE=https://api.chinawhapi.com/v1
+MODEL=deepseek-chat</code></pre>
+                </div>
+            </div>
+
+            <div class="uninstall-box">
+                <h4>Uninstall</h4>
+                <pre><code># Homebrew
+brew uninstall zeushammer
+
+# pipx
+pipx uninstall zeushammer
+
+# Remove config
+rm -rf ~/.zeushammer</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="usage" class="usage-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">How to Use</div>
+                <h2 class="section-title">Usage</h2>
+                <p class="section-desc">Multiple modes for different use cases</p>
+            </div>
+
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h4>CLI Mode</h4>
+                    <pre><code><span class="comment"># Interactive mode</span>
+zeushammer --mode cli
+<span class="comment"># or</span>
+python -m src.main --mode cli
+
+<span class="comment"># Single query</span>
+zeushammer "Hello, write Python code"</code></pre>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Web Mode</h4>
+                    <pre><code><span class="comment"># Start web interface</span>
+zeushammer --mode web
+<span class="comment"># or</span>
+python -m src.main --mode web
+
+<span class="comment"># Access http://localhost:7860</span></code></pre>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Voice Mode</h4>
+                    <pre><code><span class="comment"># Start voice interaction</span>
+zeushammer --mode voice
+<span class="comment"># or</span>
+python -m src.main --mode voice
+
+<span class="comment"># Say "Zeus" or "宙斯" to wake</span></code></pre>
+                </div>
+
+                <div class="usage-card">
+                    <h4>TUI Mode</h4>
+                    <pre><code><span class="comment"># Rich terminal interface</span>
+zeushammer --mode tui
+<span class="comment"># or</span>
+python -m src.main --mode tui</code></pre>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Security Levels</h4>
+                    <pre><code><span class="comment"># Safe mode (recommended)</span>
+zeushammer --level safe
+
+<span class="comment"># Semi-open</span>
+zeushammer --level semi_open
+
+<span class="comment"># Full open (beast mode)</span>
+zeushammer --level full_open</code></pre>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Configure Model</h4>
+                    <pre><code><span class="comment"># Edit config</span>
+nano ~/.zeushammer/config.yaml
+
+<span class="comment"># Available models:</span>
+<span class="comment"># - deepseek-chat (recommended)</span>
+<span class="comment"># - qwen-turbo</span>
+<span class="comment"># - glm-4</span>
+<span class="comment"># - claude-3-5-sonnet</span>
+<span class="comment"># - gpt-4o</span></code></pre>
                 </div>
             </div>
         </div>
@@ -765,112 +593,52 @@
     <section id="models">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Supported Providers</div>
-                <h2 class="section-title">Multi-Model Support</h2>
-                <p class="section-desc">Use any LLM provider with automatic routing and failover.</p>
+                <div class="section-label">Supported Models</div>
+                <h2 class="section-title">LLM Providers</h2>
+                <p class="section-desc">Access global mainstream LLMs via chinawhapi.com</p>
             </div>
 
+            <h3 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.1rem;">China LLMs</h3>
             <div class="models-grid">
-                <div class="model-item">
-                    <h4>DeepSeek</h4>
-                    <p>V3, Coder</p>
-                </div>
-                <div class="model-item">
-                    <h4>Qwen</h4>
-                    <p>Turbo, Plus, Max</p>
-                </div>
-                <div class="model-item">
-                    <h4>GLM</h4>
-                    <p>GLM-4, GLM-4V</p>
-                </div>
-                <div class="model-item">
-                    <h4>Moonshot</h4>
-                    <p>8K, 32K, 128K</p>
-                </div>
-                <div class="model-item">
-                    <h4>Claude</h4>
-                    <p>Sonnet, Opus, Haiku</p>
-                </div>
-                <div class="model-item">
-                    <h4>GPT-4</h4>
-                    <p>4o, Turbo</p>
-                </div>
+                <div class="model-item"><h4>DeepSeek</h4><p>V3, Coder</p></div>
+                <div class="model-item"><h4>Qwen</h4><p>Turbo, Plus, Max</p></div>
+                <div class="model-item"><h4>GLM</h4><p>GLM-4, GLM-4V</p></div>
+                <div class="model-item"><h4>Moonshot</h4><p>8K, 32K, 128K</p></div>
+                <div class="model-item"><h4>ERNIE</h4><p>Bot 4.0, Long</p></div>
+                <div class="model-item"><h4>Doubao</h4><p>Pro, Lite</p></div>
+                <div class="model-item"><h4>MiniMax</h4><p>ABAB6 Chat</p></div>
             </div>
-        </div>
-    </section>
 
-    <section id="install" class="install-section">
-        <div class="container">
-            <div class="install-box">
-                <h2>One-Line Install</h2>
-                <p class="desc">Run this command to install ZeusHammer with all dependencies:</p>
-                <div class="install-cmd">
-                    <span class="prompt">$</span> <span class="cmd">curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash</span>
-                </div>
+            <h3 style="color: var(--accent-cyan); margin: 2rem 0 1rem; font-size: 1.1rem;">International</h3>
+            <div class="models-grid">
+                <div class="model-item"><h4>Claude</h4><p>Sonnet, Opus, Haiku</p></div>
+                <div class="model-item"><h4>GPT-4</h4><p>4o, Turbo</p></div>
+                <div class="model-item"><h4>Ollama</h4><p>Local Models</p></div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>2024 ZeusHammer - MIT License | <a href="https://github.com/pengrambo3-tech/ZeusHammer">GitHub</a></p>
+        <p>2024-2026 ZeusHammer | MIT License | <a href="https://github.com/pengrambo3-tech/ZeusHammer">GitHub</a> | <a href="https://github.com/pengrambo3-tech/ZeusHammer/releases">Releases</a></p>
     </footer>
 
     <script>
-        // Particle animation
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize(); window.addEventListener('resize', resize);
         const particles = [];
-        const particleCount = 80;
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2 + 1,
-                color: `rgba(0, 240, 255, ${Math.random() * 0.5 + 0.2})`
-            });
+        for (let i = 0; i < 60; i++) {
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, size: Math.random() * 2 + 1, color: Math.random() > 0.5 ? 'rgba(0, 240, 255,' : 'rgba(168, 85, 247,', opacity: Math.random() * 0.4 + 0.2 });
         }
-
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             particles.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-
+                p.x += p.vx; p.y += p.vy;
                 if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-
-                // Connect nearby particles
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 * (1 - dist / 150)})`;
-                        ctx.stroke();
-                    }
-                });
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = p.color + p.opacity + ')'; ctx.fill();
             });
-
             requestAnimationFrame(animate);
         }
         animate();
