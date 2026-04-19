@@ -1,0 +1,45 @@
+# ZeusHammer Requirements
+# Core dependencies for ZeusHammer AI Agent
+
+# Core
+httpx>=0.25.0
+pyyaml>=6.0
+aiofiles>=23.0.0
+python-dotenv>=1.0.0
+
+# LLM Providers
+openai>=1.0.0
+anthropic>=0.18.0
+
+# Voice (TTS)
+edge-tts>=6.1.0
+
+# Voice (STT)
+pyaudio>=0.2.14
+
+# Whisper
+faster-whisper>=0.9.0
+
+# VAD
+silero-vad>=1.0.0
+
+# Web UI
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+starlette>=0.32.0
+websockets>=12.0
+jinja2>=3.1.0
+
+# Browser
+playwright>=1.40.0
+
+# Auth/Security
+qrcode>=7.4.2
+pillow>=10.0.0
+cryptography>=41.0.0
+
+# Audio playback
+pydub>=0.25.0
+
+# System: macOS: brew install portaudio
+# System: Linux: sudo apt install portaudio19-dev libasound2-dev

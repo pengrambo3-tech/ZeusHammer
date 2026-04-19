@@ -2,9 +2,6 @@
 # ZeusHammer Quick Installer
 # Usage: 
 #   curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh -o /tmp/install.sh && bash /tmp/install.sh
-#
-# Or clone directly:
-#   git clone https://github.com/pengrambo3-tech/ZeusHammer.git && cd ZeusHammer
 
 set -e
 
@@ -27,7 +24,6 @@ fi
 
 echo -e "${CYAN}[1/5] Cloning repository...${NC}"
 
-# Clone to home directory to avoid temp directory issues
 cd "$HOME" || exit 1
 
 if [ -d "$HOME/ZeusHammer" ]; then
@@ -44,20 +40,17 @@ echo "Working in: $ZEUSHAMMER_DIR"
 
 echo -e "${CYAN}[2/5] Installing dependencies...${NC}"
 
-# Check if pipx is available
-if command -v pipx &> /dev/null; then
-    echo "Using pipx for installation..."
-    pipx install -e "$ZEUSHAMMER_DIR"
-    echo -e "${GREEN}pipx installation successful!${NC}"
+# Core dependencies
+DEPS="httpx pyyaml aiofiles python-dotenv openai anthropic edge-tts pyaudio faster-whisper silero-vad fastapi uvicorn starlette websockets jinja2 playwright qrcode pillow cryptography pydub"
+
+if pip3 install --help 2>/dev/null | grep -q "break-system-packages"; then
+    echo "Using --break-system-packages flag for macOS..."
+    pip3 install --break-system-packages -q $DEPS
 else
-    echo "pipx not found. Installing with pip..."
-    if pip3 install --help 2>/dev/null | grep -q "break-system-packages"; then
-        echo "Using --break-system-packages flag for macOS..."
-        pip3 install --break-system-packages -q -r "$ZEUSHAMMER_DIR/requirements.txt"
-    else
-        pip3 install -q -r "$ZEUSHAMMER_DIR/requirements.txt"
-    fi
+    pip3 install -q $DEPS
 fi
+
+echo -e "${GREEN}Dependencies installed!${NC}"
 
 # macOS specific: install portaudio
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -88,7 +81,7 @@ cat > ~/.zeushammer/.env << 'EOF'
 EOF
 
 echo -e "${CYAN}[5/5] Verifying installation...${NC}"
-if python3 -c "import httpx, yaml, openai, anthropic" 2>/dev/null; then
+if python3 -c "import httpx, yaml, openai, anthropic, fastapi" 2>/dev/null; then
     echo -e "${GREEN}Dependencies OK!${NC}"
 else
     echo "Warning: Some dependencies may not be installed correctly"
