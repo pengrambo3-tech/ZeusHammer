@@ -1,11 +1,11 @@
 #!/bin/bash
-# ZuesHammer One-Line Installer
+# ZeusHammer One-Line Installer
 # Usage: curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
 
 set -e
 
 echo "=============================================="
-echo "  ZuesHammer Installer v2.0.0"
+echo "  ZeusHammer Installer v2.0.0"
 echo "=============================================="
 echo ""
 
@@ -25,7 +25,7 @@ echo -e "${CYAN}[1/4] Cloning repository...${NC}"
 if [ -d "zueshammer" ]; then
     echo "zueshammer directory already exists, using existing..."
 else
-    git clone https://github.com/pengrambo3-tech/zueshammer.git
+    git clone https://github.com/pengrambo3-tech/ZeusHammer.git
 fi
 cd zueshammer
 
@@ -38,7 +38,7 @@ pip install -q -r requirements.txt 2>/dev/null || pip3 install -q -r requirement
 echo -e "${CYAN}[3/4] Creating config directory...${NC}"
 mkdir -p ~/.zueshammer
 cat > ~/.zueshammer/.env << 'EOF'
-# ZuesHammer Configuration
+# ZeusHammer Configuration
 # Add your API key below
 
 # Option 1: ChinaWhapi (recommended for Chinese users)
@@ -71,5 +71,5 @@ echo "  echo 'OPENAI_API_KEY=your_key' >> ~/.zueshammer/.env"
 echo "  echo 'API_BASE=https://api.chinawhapi.com/v1' >> ~/.zueshammer/.env"
 echo "  echo 'MODEL=deepseek-chat' >> ~/.zueshammer/.env"
 echo ""
-echo -e "For more info: ${CYAN}https://github.com/pengrambo3-tech/zueshammer${NC}"
+echo -e "For more info: ${CYAN}https://github.com/pengrambo3-tech/ZeusHammer${NC}"
 echo ""

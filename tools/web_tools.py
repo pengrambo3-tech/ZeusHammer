@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - Web工具包装器
+ZeusHammer - Web工具包装器
 基于Hermes web_tools.py + ClaudeCode web_search + web_fetch
 """
 

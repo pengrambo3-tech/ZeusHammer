@@ -1,5 +1,5 @@
 """
-ZuesHammer Web UI Server
+ZeusHammer Web UI Server
 
 Web界面 + 实时语音交互
 """
@@ -31,8 +31,8 @@ except ImportError:
     HAS_WEBSOCKETS = False
 
 
-class ZuesHammerUI:
-    """ZuesHammer Web UI"""
+class ZeusHammerUI:
+    """ZeusHammer Web UI"""
 
     def __init__(self, host: str = "0.0.0.0", port: int = 8765):
         self.host = host
@@ -53,7 +53,7 @@ class ZuesHammerUI:
             logger.error("FastAPI not installed. Run: pip install fastapi uvicorn")
             return
 
-        self.app = FastAPI(title="ZuesHammer", version="2.0.0")
+        self.app = FastAPI(title="ZeusHammer", version="2.0.0")
 
         # 挂载静态文件
         static_path = Path(__file__).parent / "static"
@@ -217,7 +217,7 @@ class ZuesHammerUI:
         )
         server = uvicorn.Server(config)
 
-        logger.info(f"ZuesHammer UI started on http://{self.host}:{self.port}")
+        logger.info(f"ZeusHammer UI started on http://{self.host}:{self.port}")
         await server.serve()
 
     def _get_html(self) -> str:
@@ -228,7 +228,7 @@ class ZuesHammerUI:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZuesHammer - 宙斯之锤</title>
+    <title>ZeusHammer - 宙斯之锤</title>
     <style>
         :root {
             --primary: #6366f1;
@@ -668,7 +668,7 @@ class ZuesHammerUI:
         <div class="logo">
             <span class="logo-icon">⚡</span>
             <div>
-                <h1>ZuesHammer</h1>
+                <h1>ZeusHammer</h1>
                 <span>宙斯之锤</span>
             </div>
         </div>
@@ -685,7 +685,7 @@ class ZuesHammerUI:
             <div class="chat-header">对话</div>
             <div class="chat-messages" id="messages">
                 <div class="message assistant">
-                    你好！我是 ZuesHammer，宙斯之锤。
+                    你好！我是 ZeusHammer，宙斯之锤。
                     <div class="time">系统</div>
                 </div>
             </div>
@@ -789,7 +789,7 @@ class ZuesHammerUI:
     </main>
 
     <footer>
-        ZuesHammer v2.0.0 | Claude + Hermes + OpenClaw
+        ZeusHammer v2.0.0 | Claude + Hermes + OpenClaw
     </footer>
 
     <script>
@@ -843,7 +843,7 @@ class ZuesHammerUI:
             div.className = `message ${role}`;
             div.innerHTML = `
                 ${content}
-                <div class="time">${role === 'user' ? '你' : 'ZuesHammer'} · ${time}</div>
+                <div class="time">${role === 'user' ? '你' : 'ZeusHammer'} · ${time}</div>
             `;
 
             messages.appendChild(div);
@@ -1044,7 +1044,7 @@ class ZuesHammerUI:
 
 async def run_ui(host: str = "0.0.0.0", port: int = 8765):
     """运行UI服务器"""
-    ui = ZuesHammerUI(host, port)
+    ui = ZeusHammerUI(host, port)
     await ui.start()
 
 

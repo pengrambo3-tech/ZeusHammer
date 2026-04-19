@@ -1,4 +1,4 @@
-# ZuesHammer - 宙斯之锤
+# ZeusHammer - 宙斯之锤
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ## 真正的源码融合
 
-ZuesHammer **真正融合**了三个顶级开源AI智能体项目的核心代码：
+ZeusHammer **真正融合**了三个顶级开源AI智能体项目的核心代码：
 
 | 项目 | 核心贡献 | 许可证 |
 |------|----------|--------|
@@ -55,7 +55,7 @@ curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/in
 或手动安装:
 
 ```bash
-git clone https://github.com/pengrambo3-tech/zueshammer.git
+git clone https://github.com/pengrambo3-tech/ZeusHammer.git
 cd zueshammer
 pip install -r requirements.txt
 ```
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         ZuesHammer                                │
+│                         ZeusHammer                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌───────────────────────────────────────────────────────────┐ │
 │  │                      融合核心层                              │ │
@@ -116,7 +116,7 @@ pip install -r requirements.txt
 ### 本地大脑 - 先思考，再调用LLM
 
 ```python
-# ZuesHammer 本地大脑工作流程:
+# ZeusHammer 本地大脑工作流程:
 # 1. 用户下达指令
 # 2. 本地大脑接收指令
 # 3. 与技能库进行模式匹配
@@ -211,7 +211,7 @@ python3 -m src.main --mode voice  # 语音模式（推荐！）
 ## 项目结构
 
 ```
-ZuesHammer/
+ZeusHammer/
 ├── src/
 │   ├── fusion/              # 三大项目融合
 │   │   ├── claude_code/     # ClaudeCode 核心

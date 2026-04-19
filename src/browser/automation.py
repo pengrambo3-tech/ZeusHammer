@@ -1,5 +1,5 @@
 """
-ZuesHammer Browser Automation
+ZeusHammer Browser Automation
 
 Fuses OpenClaw's browser automation with Hermes' Playwright integration.
 

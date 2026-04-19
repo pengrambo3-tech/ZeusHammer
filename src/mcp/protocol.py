@@ -1,5 +1,5 @@
 """
-ZuesHammer MCP Protocol Implementation
+ZeusHammer MCP Protocol Implementation
 
 真正融合Hermes MCP核心协议:
 
@@ -890,7 +890,7 @@ class MCPProtocol:
     """
     MCP协议封装层
 
-    为ZuesHammerCore提供统一的MCP接口。
+    为ZeusHammerCore提供统一的MCP接口。
     封装MCPClient/MCPServerManager，提供初始化和关闭等生命周期方法。
     """
 

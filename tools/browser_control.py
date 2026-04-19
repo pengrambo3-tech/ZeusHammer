@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - OpenClaw浏览器控制集成
+ZeusHammer - OpenClaw浏览器控制集成
 基于OpenClaw的browser_tool.py进行浏览器自动化
 """
 

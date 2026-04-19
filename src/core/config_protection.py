@@ -1,5 +1,5 @@
 """
-ZuesHammer Configuration Protection System
+ZeusHammer Configuration Protection System
 
 真正融合OpenClaw的配置保护机制:
 

@@ -1,5 +1,5 @@
 """
-ZuesHammer 工具系统
+ZeusHammer 工具系统
 
 真实集成ClaudeCode的CLI工具能力。
 通过claude命令直接调用Agent/Bash/File等工具。

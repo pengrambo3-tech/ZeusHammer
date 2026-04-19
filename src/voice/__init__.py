@@ -1,5 +1,5 @@
 """
-ZuesHammer Voice Module
+ZeusHammer Voice Module
 """
 
 from .voice_system import (

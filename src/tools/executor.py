@@ -1,5 +1,5 @@
 """
-ZuesHammer 工具执行器
+ZeusHammer 工具执行器
 
 融合三大项目最佳实践的原创设计:
 

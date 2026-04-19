@@ -1,7 +1,7 @@
 """
-ZuesHammer 核心引擎
+ZeusHammer 核心引擎
 
-真正的ZuesHammer智能体核心。
+真正的ZeusHammer智能体核心。
 集成ClaudeCode、Hermes、OpenClaw的真实能力。
 """
 
@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 
 from src.core.config import Config
 
-class ZuesHammerCore:
+class ZeusHammerCore:
     """
-    ZuesHammer核心引擎
+    ZeusHammer核心引擎
 
     真正集成了三个项目的优势:
 
@@ -73,8 +73,8 @@ class ZuesHammerCore:
         self.conversation_history: List[Dict[str, str]] = []
 
     async def start(self):
-        """启动ZuesHammer"""
-        logger.info("启动ZuesHammer...")
+        """启动ZeusHammer"""
+        logger.info("启动ZeusHammer...")
 
         # 初始化各组件
         await self.tui.initialize()
@@ -92,7 +92,7 @@ class ZuesHammerCore:
             logger.info("浏览器已就绪")
 
         self._running = True
-        await self.event_bus.publish(Event(type="system", data={"message": "ZuesHammer启动成功"}))
+        await self.event_bus.publish(Event(type="system", data={"message": "ZeusHammer启动成功"}))
 
     async def process(self, user_input: str) -> str:
         """
@@ -101,7 +101,7 @@ class ZuesHammerCore:
         真正的思考-执行循环。
         """
         if not self._running:
-            return "ZuesHammer未启动"
+            return "ZeusHammer未启动"
 
         # 添加到历史
         self.conversation_history.append({"role": "user", "content": user_input})
@@ -122,7 +122,7 @@ class ZuesHammerCore:
         # 记录回复
         self.conversation_history.append({"role": "assistant", "content": response})
         await self.memory.store(
-            f"ZuesHammer: {response[:100]}",
+            f"ZeusHammer: {response[:100]}",
             value={"role": "assistant", "content": response},
             importance=0.7,
             category="conversation"
@@ -164,7 +164,7 @@ class ZuesHammerCore:
 
     def _build_system_prompt(self) -> str:
         """构建系统提示"""
-        return """你 是 ZuesHammer，宙斯之锤，一个超级智能体。
+        return """你 是 ZeusHammer，宙斯之锤，一个超级智能体。
 
 你融合了以下项目的精华:
 - ClaudeCode: 真实的代码编辑和终端能力
@@ -232,7 +232,7 @@ class ZuesHammerCore:
         await self.start()
 
         print("\n" + "=" * 60)
-        print("  ZuesHammer - 宙斯之锤")
+        print("  ZeusHammer - 宙斯之锤")
         print("  融合 ClaudeCode + Hermes + OpenClaw")
         print("=" * 60)
         print("\n输入问题或命令，exit退出\n")
@@ -251,7 +251,7 @@ class ZuesHammerCore:
                     break
 
                 response = await self.process(user_input)
-                print(f"\n[ZuesHammer]\n{response}\n")
+                print(f"\n[ZeusHammer]\n{response}\n")
 
             except (KeyboardInterrupt, EOFError):
                 break
@@ -261,8 +261,8 @@ class ZuesHammerCore:
         await self.stop()
 
     async def stop(self):
-        """停止ZuesHammer"""
-        logger.info("停止ZuesHammer...")
+        """停止ZeusHammer"""
+        logger.info("停止ZeusHammer...")
 
         if self.browser:
             await self.browser.close()
@@ -271,14 +271,14 @@ class ZuesHammerCore:
         await self.memory.close()
 
         self._running = False
-        await self.event_bus.publish(Event(type="system", data={"message": "ZuesHammer已停止"}))
+        await self.event_bus.publish(Event(type="system", data={"message": "ZeusHammer已停止"}))
 
 
 def main():
     """入口函数"""
     import argparse
 
-    parser = argparse.ArgumentParser(description="ZuesHammer - 宙斯之锤")
+    parser = argparse.ArgumentParser(description="ZeusHammer - 宙斯之锤")
     parser.add_argument("--api-key", help="Anthropic API Key")
     parser.add_argument("--model", default="claude-opus-4-5", help="模型")
     parser.add_argument("--headless", action="store_true", help="无头浏览器")
@@ -296,7 +296,7 @@ def main():
     )
 
     # 运行
-    agent = ZuesHammerCore(config)
+    agent = ZeusHammerCore(config)
     asyncio.run(agent.run_interactive())
 
 

@@ -1,5 +1,5 @@
 """
-ZuesHammer MCP Protocol Module
+ZeusHammer MCP Protocol Module
 
 导出MCP协议相关类。
 """

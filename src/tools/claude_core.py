@@ -1,5 +1,5 @@
 """
-ZuesHammer Complete Tool Executor
+ZeusHammer Complete Tool Executor
 
 真正融合ClaudeCode核心算法:
 

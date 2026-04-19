@@ -1,5 +1,5 @@
 """
-ZuesHammer WebSocket Communication
+ZeusHammer WebSocket Communication
 
 WebSocket通信模块，支持:
 1. 实时消息推送

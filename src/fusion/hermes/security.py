@@ -507,7 +507,7 @@ class MCPClient:
                         "resources": {}
                     },
                     "clientInfo": {
-                        "name": "ZuesHammer",
+                        "name": "ZeusHammer",
                         "version": "2.0.0"
                     }
                 }

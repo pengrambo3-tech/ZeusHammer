@@ -1,5 +1,5 @@
 """
-ZuesHammer Model Manager
+ZeusHammer Model Manager
 
 Multi-Model Support with Automatic Routing (inspired by OpenClaw)
 

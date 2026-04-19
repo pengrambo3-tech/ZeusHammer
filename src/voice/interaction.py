@@ -1,5 +1,5 @@
 """
-ZuesHammer Voice System
+ZeusHammer Voice System
 
 Voice interaction with Chinese/English recognition.
 - Speech recognition (STT)

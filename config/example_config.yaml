@@ -1,4 +1,4 @@
-# ZuesHammer Configuration Example
+# ZeusHammer Configuration Example
 # OpenClaw-style Multi-Model Configuration
 # Copy to ~/.zueshammer/config.yaml
 
@@ -78,7 +78,7 @@ models:
 # =============================================================================
 # Basic Settings
 # =============================================================================
-name: ZuesHammer
+name: ZeusHammer
 version: 2.0.0
 debug: false
 

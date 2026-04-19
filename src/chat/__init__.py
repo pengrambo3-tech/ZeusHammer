@@ -1,5 +1,5 @@
 """
-ZuesHammer Chat Module
+ZeusHammer Chat Module
 
 多平台聊天集成。
 """

@@ -1,5 +1,5 @@
 """
-ZuesHammer 浏览器编排器 - 完整实现
+ZeusHammer 浏览器编排器 - 完整实现
 
 真正实现Playwright浏览器控制。
 """

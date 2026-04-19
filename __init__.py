@@ -1,5 +1,5 @@
 """
-ZuesHammer - Zeus Hammer
+ZeusHammer - Zeus Hammer
 The Super AI Agent
 
 Fusion of:
@@ -8,11 +8,11 @@ Fusion of:
 - OpenClaw: Skill invocation, browser automation, chat ports
 
 Version: 2.0.0
-Author: ZuesHammer Team
+Author: ZeusHammer Team
 """
 
 __version__ = "2.0.0"
-__author__ = "ZuesHammer Team"
+__author__ = "ZeusHammer Team"
 
 import asyncio
 import logging
@@ -36,11 +36,11 @@ from src.core.permission import PermissionLevel, get_permission_manager
 from src.core.event_bus import EventBus, Event
 
 # Main class
-from src.zueshammer import ZuesHammer
+from src.zueshammer import ZeusHammer
 
 __all__ = [
     "__version__",
-    "ZuesHammer",
+    "ZeusHammer",
     "Config",
     "PermissionLevel",
     "EventBus",
@@ -52,13 +52,13 @@ async def main():
     """Main entry"""
     print("""
 ╔══════════════════════════════════════════════╗
-║       ⚡ ZuesHammer - Zeus Hammer ⚡        ║
+║       ⚡ ZeusHammer - Zeus Hammer ⚡        ║
 ║   Super AI Agent | Claude + Hermes + OpenClaw ║
 ╚══════════════════════════════════════════════╝
     """)
 
     config = Config.from_default_locations()
-    agent = ZuesHammer(config)
+    agent = ZeusHammer(config)
 
     try:
         await agent.start()
@@ -79,7 +79,7 @@ async def main():
                     break
 
                 response = await agent.process(user_input)
-                print(f"\n[ZuesHammer]\n{response}\n")
+                print(f"\n[ZeusHammer]\n{response}\n")
 
             except KeyboardInterrupt:
                 break

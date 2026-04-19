@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 命令行快捷入口
+ZeusHammer - 命令行快捷入口
 
 Usage:
     python main.py                    # 默认CLI模式

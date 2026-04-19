@@ -1,5 +1,5 @@
 """
-ZuesHammer Complete Memory System
+ZeusHammer Complete Memory System
 
 完整记忆系统:
 1. 短期记忆 (LRU缓存)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer 工具系统
+ZeusHammer 工具系统
 全功能工具调用系统，支持全开放模式
 """
 

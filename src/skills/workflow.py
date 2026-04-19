@@ -1,5 +1,5 @@
 """
-ZuesHammer Workflow Skills System
+ZeusHammer Workflow Skills System
 
 Fuses Hermes' workflow skills + OpenClaw's skill invocation.
 

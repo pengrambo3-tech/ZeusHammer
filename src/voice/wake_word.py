@@ -1,5 +1,5 @@
 """
-ZuesHammer Voice Wake Word System
+ZeusHammer Voice Wake Word System
 
 语音唤醒 + 实时监听 + 声音记忆
 
@@ -466,7 +466,7 @@ class VoiceManager:
         启动语音模式
 
         Args:
-            agent: ZuesHammer智能体
+            agent: ZeusHammer智能体
         """
         logger.info("Starting voice mode...")
 
@@ -648,7 +648,7 @@ class VoiceManager:
         处理无模型或无记忆的情况
         
         Args:
-            agent: ZuesHammer智能体
+            agent: ZeusHammer智能体
             language: 用户语言
             
         Returns:

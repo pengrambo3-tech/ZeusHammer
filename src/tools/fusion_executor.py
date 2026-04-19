@@ -1,5 +1,5 @@
 """
-ZuesHammer Advanced Tool Executor
+ZeusHammer Advanced Tool Executor
 
 真正融合三个项目的核心优势:
 

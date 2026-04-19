@@ -1,5 +1,5 @@
 """
-ZuesHammer Tools Module
+ZeusHammer Tools Module
 
 工具系统集成。
 """

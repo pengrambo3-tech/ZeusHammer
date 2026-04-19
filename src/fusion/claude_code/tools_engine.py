@@ -326,7 +326,7 @@ class OTelLogger:
     ClaudeCode 核心功能：结构化日志记录和追踪
     """
 
-    def __init__(self, service_name: str = "ZuesHammer"):
+    def __init__(self, service_name: str = "ZeusHammer"):
         self.service_name = service_name
         self._spans: Dict[str, Dict] = {}
         self._logs: List[Dict] = []

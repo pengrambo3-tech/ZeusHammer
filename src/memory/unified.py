@@ -1,5 +1,5 @@
 """
-ZuesHammer 统一记忆系统
+ZeusHammer 统一记忆系统
 
 融合三大项目最佳实践的原创设计:
 

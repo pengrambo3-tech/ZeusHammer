@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 文件工具包装器
+ZeusHammer - 文件工具包装器
 基于Hermes file_tools.py + ClaudeCode读写能力
 """
 

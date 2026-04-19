@@ -1,5 +1,5 @@
 """
-ZuesHammer Chat Ports
+ZeusHammer Chat Ports
 
 Multi-port chat integration:
 - WhatsApp (international)

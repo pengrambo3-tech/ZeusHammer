@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 技能引擎
+ZeusHammer - 技能引擎
 融合OpenClaw技能系统 + Hermes技能管理 + 自动生成能力
 """
 

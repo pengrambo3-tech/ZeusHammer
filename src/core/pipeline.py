@@ -1,5 +1,5 @@
 """
-ZuesHammer 处理管道
+ZeusHammer 处理管道
 
 原创设计，处理用户输入的管道。
 
@@ -205,7 +205,7 @@ class Pipeline:
                 if ctx.results:
                     ctx.response = self._format_results(ctx.results)
                 else:
-                    ctx.response = "[ZuesHammer] 已处理您的请求"
+                    ctx.response = "[ZeusHammer] 已处理您的请求"
 
         self.register(Stage.OUTPUT, format_output)
 
@@ -261,7 +261,7 @@ class Pipeline:
 
     def _get_help(self) -> str:
         return """
-ZuesHammer 可用命令:
+ZeusHammer 可用命令:
   /help     - 显示帮助
   /status   - 显示状态
   /tools    - 显示可用工具
@@ -270,7 +270,7 @@ ZuesHammer 可用命令:
 
     def _get_status(self) -> str:
         return f"""
-ZuesHammer 状态:
+ZeusHammer 状态:
   版本: {self.core.version}
   状态: {self.core.state}
   记忆: {'已启用' if self.core.memory else '未启用'}

@@ -1,5 +1,5 @@
 """
-ZuesHammer Memory Module
+ZeusHammer Memory Module
 """
 
 from .memory_system import (

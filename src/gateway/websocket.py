@@ -1,5 +1,5 @@
 """
-ZuesHammer WebSocket网关 - 完整实现
+ZeusHammer WebSocket网关 - 完整实现
 
 真正实现WebSocket连接管理。
 """

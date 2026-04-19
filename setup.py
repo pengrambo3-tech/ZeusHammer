@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer Setup
+ZeusHammer Setup
 
 Package installation configuration.
 
@@ -33,7 +33,7 @@ if requirements_file.exists():
 setup(
     name="zueshammer",
     version="2.0.0",
-    author="ZuesHammer Team",
+    author="ZeusHammer Team",
     author_email="contact@zueshammer.ai",
     description="Super AI Agent - Claude + Hermes + OpenClaw",
     long_description=long_description,

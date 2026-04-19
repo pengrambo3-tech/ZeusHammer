@@ -1,5 +1,5 @@
 """
-ZuesHammer TUI界面
+ZeusHammer TUI界面
 
 真实集成OpenClaw的TUI界面。
 使用textual库创建交互式终端界面。
@@ -56,7 +56,7 @@ class TUIInterface:
             from textual.widgets import Header, Footer, Input, RichLog
             from textual.binding import Binding
 
-            self._app = ZuesHammerApp()
+            self._app = ZeusHammerApp()
             self._initialized = True
             logger.info("TUI初始化成功")
             return True
@@ -98,7 +98,7 @@ class TUIInterface:
             await self._app.run_async()
         else:
             # 简单文本循环
-            print("\n=== ZuesHammer TUI ===")
+            print("\n=== ZeusHammer TUI ===")
             print("输入exit退出\n")
 
             while True:
@@ -113,7 +113,7 @@ class TUIInterface:
                     break
 
 
-class ZuesHammerApp:
+class ZeusHammerApp:
     """
     Textual应用
 
@@ -144,7 +144,7 @@ class SimpleTextUI:
 
     async def initialize(self):
         print("=" * 60)
-        print("  ZuesHammer - 宙斯之锤")
+        print("  ZeusHammer - 宙斯之锤")
         print("  真实集成 ClaudeCode + Hermes + OpenClaw")
         print("=" * 60)
         print()

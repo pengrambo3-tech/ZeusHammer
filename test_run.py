@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer 测试脚本
+ZeusHammer 测试脚本
 用于验证项目在沙盒环境中可以正常运行
 """
 
@@ -13,7 +13,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 print("=" * 60)
-print("ZuesHammer 本地测试")
+print("ZeusHammer 本地测试")
 print("=" * 60)
 
 async def test():
@@ -34,7 +34,7 @@ async def test():
     try:
         from src.memory.memory_system import MemoryManager
         memory = MemoryManager()
-        memory.remember("test_key", {"message": "Hello from ZuesHammer!"})
+        memory.remember("test_key", {"message": "Hello from ZeusHammer!"})
         value = memory.recall("test_key")
         print(f"   ✓ MemoryManager 创建成功, 测试写入/读取: {value}")
     except Exception as e:
@@ -111,24 +111,24 @@ async def test():
         errors.append(f"Skills: {e}")
         print(f"   ✗ Skills 失败: {e}")
 
-    # 10. ZuesHammer 主类
-    print("\n[10] 测试ZuesHammer主类...")
+    # 10. ZeusHammer 主类
+    print("\n[10] 测试ZeusHammer主类...")
     try:
-        from src.zueshammer import ZuesHammer
-        agent = ZuesHammer(config)
-        print(f"   ✓ ZuesHammer 创建成功")
+        from src.zueshammer import ZeusHammer
+        agent = ZeusHammer(config)
+        print(f"   ✓ ZeusHammer 创建成功")
         await agent.start()
-        print(f"   ✓ ZuesHammer 启动成功")
+        print(f"   ✓ ZeusHammer 启动成功")
 
         # 测试 process 方法
         response = await agent.process("你好")
         print(f"   ✓ agent.process() 执行成功")
 
         await agent.stop()
-        print(f"   ✓ ZuesHammer 停止成功")
+        print(f"   ✓ ZeusHammer 停止成功")
     except Exception as e:
-        errors.append(f"ZuesHammer: {e}")
-        print(f"   ✗ ZuesHammer 失败: {e}")
+        errors.append(f"ZeusHammer: {e}")
+        print(f"   ✗ ZeusHammer 失败: {e}")
 
     # 结果总结
     print("\n" + "=" * 60)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 语音优先接口层
+ZeusHammer - 语音优先接口层
 基于Hermes voice_mode.py + Whisper + TTS实现语音优先交互
 """
 
@@ -33,7 +33,7 @@ logger = get_logger("voice_interface")
 
 class VoiceFirstInterface:
     """
-    语音优先接口 - ZuesHammer核心创新
+    语音优先接口 - ZeusHammer核心创新
     
     特性:
     1. 唤醒词检测 (Zues/宙斯)

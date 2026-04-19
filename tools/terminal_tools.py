@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 终端工具包装器
+ZeusHammer - 终端工具包装器
 基于Hermes terminal_tool.py + ClaudeCode exec能力
 """
 

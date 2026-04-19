@@ -1,5 +1,5 @@
 """
-ZuesHammer Complete Voice System
+ZeusHammer Complete Voice System
 
 完整语音交互模块:
 1. Whisper语音识别 (本地)

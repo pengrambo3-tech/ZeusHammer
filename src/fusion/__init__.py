@@ -1,5 +1,5 @@
 """
-ZuesHammer Fusion Modules
+ZeusHammer Fusion Modules
 
 真正融合三个顶级开源项目的核心代码：
 - ClaudeCode: 工具执行引擎、并发分区、OTel遥测

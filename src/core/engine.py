@@ -1,5 +1,5 @@
 """
-ZuesHammer 核心引擎
+ZeusHammer 核心引擎
 
 原创设计，统一管理所有子系统。
 
@@ -72,9 +72,9 @@ class TurnContext:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
 
-class ZuesHammerCore:
+class ZeusHammerCore:
     """
-    ZuesHammer 核心引擎
+    ZeusHammer 核心引擎
 
     原创设计，统一协调所有子系统。
 
@@ -344,7 +344,7 @@ class ZuesHammerCore:
         # 这里是模拟响应
         # 实际应该调用: await self._llm.call(prompt, system_context)
 
-        return f"[ZuesHammer思考中...] {prompt}"
+        return f"[ZeusHammer思考中...] {prompt}"
 
     def register_pre_hook(self, hook: Callable):
         """注册预处理钩子"""

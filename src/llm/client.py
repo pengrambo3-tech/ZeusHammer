@@ -1,5 +1,5 @@
 """
-ZuesHammer LLM调用层
+ZeusHammer LLM调用层
 
 真实集成ClaudeCode的Anthropic API能力。
 """

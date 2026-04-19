@@ -1,5 +1,5 @@
 """
-ZuesHammer Security Module
+ZeusHammer Security Module
 
 真正融合Hermes安全核心算法:
 

@@ -1,5 +1,5 @@
 """
-ZuesHammer 浏览器控制
+ZeusHammer 浏览器控制
 
 真实集成Hermes的Playwright浏览器控制。
 """

@@ -1,6 +1,6 @@
-# ZuesHammer Fusion Modules
+# ZeusHammer Fusion Modules
 
-ZuesHammer 真正融合了三个顶级开源项目的核心代码：
+ZeusHammer 真正融合了三个顶级开源项目的核心代码：
 
 ## 融合来源
 
@@ -163,7 +163,7 @@ class ChannelGateway:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     ZuesHammer                              │
+│                     ZeusHammer                              │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────────────────────────────────────────────┐   │
@@ -226,4 +226,4 @@ await gateway.start()
 - Hermes: MIT 许可证
 - OpenClaw: MIT 许可证
 
-ZuesHammer 项目整体采用 MIT 许可证。
+ZeusHammer 项目整体采用 MIT 许可证。

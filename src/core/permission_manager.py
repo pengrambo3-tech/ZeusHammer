@@ -1,5 +1,5 @@
 """
-ZuesHammer Permission Manager
+ZeusHammer Permission Manager
 
 权限管理系统 - 完整实现
 

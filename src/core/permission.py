@@ -1,5 +1,5 @@
 """
-ZuesHammer Permission System
+ZeusHammer Permission System
 
 Three permission levels:
 1. SAFE - Full confirmation required (beginner friendly)
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 class PermissionLevel(Enum):
-    """Permission levels for ZuesHammer"""
+    """Permission levels for ZeusHammer"""
     SAFE = "safe"           # Full confirmation required
     SEMI_OPEN = "semi_open" # Warning + approval for security
     FULL_OPEN = "full_open" # No restrictions, beast mode

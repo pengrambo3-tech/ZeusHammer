@@ -1,5 +1,5 @@
 """
-ZuesHammer OpenClaw Configuration Protection
+ZeusHammer OpenClaw Configuration Protection
 
 真正融合OpenClaw配置保护核心算法:
 

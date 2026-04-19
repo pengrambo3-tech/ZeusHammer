@@ -1,5 +1,5 @@
 """
-ZuesHammer 内置工具
+ZeusHammer 内置工具
 
 提供基础工具实现。
 """

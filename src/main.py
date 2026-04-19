@@ -1,5 +1,5 @@
 """
-ZuesHammer Main Entry
+ZeusHammer Main Entry
 
 主入口 - 整合所有功能
 
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 async def main():
     """主函数"""
-    parser = argparse.ArgumentParser(description="ZuesHammer - 宙斯之锤")
+    parser = argparse.ArgumentParser(description="ZeusHammer - 宙斯之锤")
     parser.add_argument("--mode", choices=["cli", "web", "voice"], default="cli")
     parser.add_argument("--host", default="0.0.0.0")
     parser.add_argument("--port", type=int, default=8765)
@@ -41,7 +41,7 @@ async def main():
 
     # 导入核心模块
     from src.core.config import Config
-    from src.zueshammer import ZuesHammer
+    from src.zueshammer import ZeusHammer
     from src.voice.wake_word import get_voice_manager
 
     # 加载配置
@@ -53,7 +53,7 @@ async def main():
         config.permission_level = args.permission
 
     # 创建智能体
-    agent = ZuesHammer(config)
+    agent = ZeusHammer(config)
 
     if args.mode == "cli":
         # 命令行模式
@@ -72,7 +72,7 @@ async def run_cli(agent):
     """命令行模式"""
     print(f"""
 ╔══════════════════════════════════════════════╗
-║       ⚡ ZuesHammer - Zeus Hammer ⚡        ║
+║       ⚡ ZeusHammer - Zeus Hammer ⚡        ║
 ║   Super AI Agent | Claude + Hermes + OpenClaw ║
 ╚══════════════════════════════════════════════╝
     """)
@@ -104,7 +104,7 @@ async def run_cli(agent):
                 continue
 
             response = await agent.process(user_input)
-            print(f"\n[ZuesHammer]\n{response}\n")
+            print(f"\n[ZeusHammer]\n{response}\n")
 
         except KeyboardInterrupt:
             break
@@ -148,7 +148,7 @@ async def run_voice(agent):
 
     print("""
 ╔══════════════════════════════════════════════╗
-║       ⚡ ZuesHammer Voice Mode ⚡           ║
+║       ⚡ ZeusHammer Voice Mode ⚡           ║
 ║                                              ║
 ║   唤醒词: "宙斯"                            ║
 ║   说 "退出" 结束                            ║

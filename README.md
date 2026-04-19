@@ -1,4 +1,4 @@
-# ZuesHammer - The Ultimate AI Agent
+# ZeusHammer - The Ultimate AI Agent
 
 <div align="center">
 
@@ -10,8 +10,8 @@
 
 *Think Locally. Speak Freely. Remember Everything.*
 
-[![Star](https://img.shields.io/github/stars/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/zueshammer)
-[![Fork](https://img.shields.io/github/forks/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/zueshammer)
+[![Star](https://img.shields.io/github/stars/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
+[![Fork](https://img.shields.io/github/forks/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
 
 </div>
 
@@ -19,7 +19,7 @@
 
 ## Fusion of Three Open Source Projects
 
-ZuesHammer is a **true fusion** of three top-tier open source AI agent projects, combining their best features into one unified super agent:
+ZeusHammer is a **true fusion** of three top-tier open source AI agent projects, combining their best features into one unified super agent:
 
 | Project | Core Contribution | License |
 |---------|------------------|---------|
@@ -58,7 +58,7 @@ curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/in
 Or manual install:
 
 ```bash
-git clone https://github.com/pengrambo3-tech/zueshammer.git
+git clone https://github.com/pengrambo3-tech/ZeusHammer.git
 cd zueshammer
 pip install -r requirements.txt
 ```
@@ -69,7 +69,7 @@ pip install -r requirements.txt
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         ZuesHammer                                │
+│                         ZeusHammer                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌───────────────────────────────────────────────────────────┐ │
 │  │                    Fusion Core                              │ │
@@ -121,7 +121,7 @@ The fusion brings together the most powerful features from each project:
 ### Local Brain - Think Before Asking LLM
 
 ```python
-# ZuesHammer's Local Brain workflow:
+# ZeusHammer's Local Brain workflow:
 1. User gives instruction
 2. Local Brain receives instruction
 3. Pattern matching against skill library
@@ -229,7 +229,7 @@ ruff check src/
 ## Project Structure
 
 ```
-ZuesHammer/
+ZeusHammer/
 ├── src/
 │   ├── fusion/              # Three project fusion
 │   │   ├── claude_code/     # ClaudeCode core

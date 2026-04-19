@@ -1,5 +1,5 @@
 """
-ZuesHammer Brain Module
+ZeusHammer Brain Module
 
 本地大脑 - 智能决策和学习的核心
 """

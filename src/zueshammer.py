@@ -1,5 +1,5 @@
 """
-ZuesHammer - Zeus Hammer
+ZeusHammer - Zeus Hammer
 The Super AI Agent
 
 真正融合三大开源项目核心优势 + 本地大脑
@@ -72,9 +72,9 @@ from src.voice.wake_word import (
 )
 
 
-class ZuesHammer:
+class ZeusHammer:
     """
-    ZuesHammer - 超级智能体
+    ZeusHammer - 超级智能体
 
     工作流程:
     1. 接收用户指令/语音
@@ -143,30 +143,30 @@ class ZuesHammer:
     async def start(self):
         """启动"""
         logger = logging.getLogger(__name__)
-        logger.info("Starting ZuesHammer...")
+        logger.info("Starting ZeusHammer...")
 
         await self.mcp.connect_all()
         await self.browser_manager.create_browser()
         await self.voice_manager.initialize()
 
         self._running = True
-        logger.info("ZuesHammer started")
+        logger.info("ZeusHammer started")
 
     async def stop(self):
         """停止"""
         logger = logging.getLogger(__name__)
-        logger.info("Stopping ZuesHammer...")
+        logger.info("Stopping ZeusHammer...")
 
         await self.mcp.disconnect_all()
         await self.browser_manager.close_all()
 
         self._running = False
-        logger.info(f"ZuesHammer stopped: {self._stats}")
+        logger.info(f"ZeusHammer stopped: {self._stats}")
 
     async def process(self, user_input: str) -> str:
         """处理用户输入"""
         if not self._running:
-            return "ZuesHammer not started"
+            return "ZeusHammer not started"
 
         self._stats["total_requests"] += 1
 
@@ -251,7 +251,7 @@ class ZuesHammer:
 
     def _build_system_prompt(self) -> str:
         """系统提示"""
-        return """You are ZuesHammer (宙斯之锤), a super AI agent.
+        return """You are ZeusHammer (宙斯之锤), a super AI agent.
 
 Capabilities:
 - File tools: read, write, edit, glob, grep
@@ -276,12 +276,12 @@ Be concise, helpful, and accurate."""
 
 async def run_cli():
     """命令行模式"""
-    agent = ZuesHammer()
+    agent = ZeusHammer()
     await agent.start()
 
     print("""
 ╔══════════════════════════════════════════════╗
-║       ⚡ ZuesHammer - Zeus Hammer ⚡        ║
+║       ⚡ ZeusHammer - Zeus Hammer ⚡        ║
 ╚══════════════════════════════════════════════╝
     """)
 
@@ -294,7 +294,7 @@ async def run_cli():
                 break
 
             response = await agent.process(user_input)
-            print(f"\n[ZuesHammer]\n{response}\n")
+            print(f"\n[ZeusHammer]\n{response}\n")
         except KeyboardInterrupt:
             break
 
@@ -303,12 +303,12 @@ async def run_cli():
 
 async def run_voice():
     """语音模式"""
-    agent = ZuesHammer()
+    agent = ZeusHammer()
     await agent.start()
 
     print("""
 ╔══════════════════════════════════════════════╗
-║       ⚡ ZuesHammer Voice Mode ⚡           ║
+║       ⚡ ZeusHammer Voice Mode ⚡           ║
 ║                                              ║
 ║   唤醒词: "宙斯"                            ║
 ╚══════════════════════════════════════════════╝

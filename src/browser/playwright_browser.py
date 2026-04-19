@@ -1,5 +1,5 @@
 """
-ZuesHammer Complete Browser Automation
+ZeusHammer Complete Browser Automation
 
 完整浏览器自动化模块，支持:
 1. Playwright (主)

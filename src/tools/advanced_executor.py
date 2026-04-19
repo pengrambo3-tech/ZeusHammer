@@ -1,5 +1,5 @@
 """
-ZuesHammer Advanced Tool System
+ZeusHammer Advanced Tool System
 
 Fuses ClaudeCode's local tools + Hermes' MCP automation.
 

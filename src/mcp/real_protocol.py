@@ -1,5 +1,5 @@
 """
-ZuesHammer MCP协议层
+ZeusHammer MCP协议层
 
 真实集成Hermes的MCP协议连接能力。
 支持stdio、HTTP、SSE等多种传输方式。
@@ -370,7 +370,7 @@ class MCPProtocol:
     """
     MCP协议封装层
 
-    为ZuesHammerCore提供统一的MCP接口。
+    为ZeusHammerCore提供统一的MCP接口。
     封装MCPManager，提供初始化和关闭等生命周期方法。
     """
 

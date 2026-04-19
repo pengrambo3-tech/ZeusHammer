@@ -1,5 +1,5 @@
 """
-ZuesHammer 事件总线
+ZeusHammer 事件总线
 
 原创设计，统一事件系统。
 

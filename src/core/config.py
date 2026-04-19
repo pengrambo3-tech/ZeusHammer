@@ -1,5 +1,5 @@
 """
-ZuesHammer Configuration System
+ZeusHammer Configuration System
 
 All configuration in English.
 Supports layered config: defaults < file < environment variables.
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class Config:
     """
-    ZuesHammer Configuration Center
+    ZeusHammer Configuration Center
 
     Design:
     - Layered override: defaults -> config file -> environment
@@ -28,7 +28,7 @@ class Config:
     """
 
     # === Basic ===
-    name: str = "ZuesHammer"
+    name: str = "ZeusHammer"
     version: str = "2.0.0"
     debug: bool = False
 

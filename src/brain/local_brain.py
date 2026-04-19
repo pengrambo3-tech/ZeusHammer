@@ -1,5 +1,5 @@
 """
-ZuesHammer Local Brain System
+ZeusHammer Local Brain System
 
 本地大脑 - 智能决策和学习的核心
 

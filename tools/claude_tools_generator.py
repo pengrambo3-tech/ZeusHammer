@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - ClaudeCode工具集成器
+ZeusHammer - ClaudeCode工具集成器
 将ClaudeCode的JavaScript工具定义转换为Hermes可用的Python工具
 """
 
@@ -166,7 +166,7 @@ CLAUDECODE_TOOLS = {
 # 生成Hermes工具注册代码
 def generate_tool_registration():
     code = '''"""
-ZuesHammer - ClaudeCode工具集成
+ZeusHammer - ClaudeCode工具集成
 自动生成的ClaudeCode工具包装器
 """
 

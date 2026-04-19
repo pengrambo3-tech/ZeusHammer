@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer LLM 大模型接入模块
+ZeusHammer LLM 大模型接入模块
 支持多API提供商：OpenAI、Claude、ChinaWhAPI、Ollama等
 """
 

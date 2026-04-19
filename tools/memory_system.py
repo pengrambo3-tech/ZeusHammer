@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ZuesHammer - 三层记忆系统
+ZeusHammer - 三层记忆系统
 融合Hermes记忆 + 创新压缩算法
 """
 

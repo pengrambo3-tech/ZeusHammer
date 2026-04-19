@@ -1,5 +1,5 @@
 """
-ZuesHammer China LLM Support
+ZeusHammer China LLM Support
 
 通过 chinawhapi.com 接入中国大模型API
 支持: DeepSeek, Qwen, GLM, Moonshot, ERNIE, Doubao, MiniMax 等

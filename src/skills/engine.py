@@ -1,5 +1,5 @@
 """
-ZuesHammer 技能引擎
+ZeusHammer 技能引擎
 
 原创设计的技能系统。
 
