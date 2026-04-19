@@ -1,6 +1,6 @@
 #!/bin/bash
 # ZeusHammer One-Line Installer
-# Usage: curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
+# Usage: curl -sSL https://git.io/zeushammer | bash
 
 set -e
 
@@ -22,12 +22,12 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 echo -e "${CYAN}[1/4] Cloning repository...${NC}"
-if [ -d "zueshammer" ]; then
-    echo "zueshammer directory already exists, using existing..."
+if [ -d "ZeusHammer" ]; then
+    echo "ZeusHammer directory already exists, using existing..."
 else
     git clone https://github.com/pengrambo3-tech/ZeusHammer.git
 fi
-cd zueshammer
+cd ZeusHammer
 
 echo -e "${CYAN}[2/4] Installing dependencies...${NC}"
 pip install -q -r requirements.txt 2>/dev/null || pip3 install -q -r requirements.txt 2>/dev/null || {

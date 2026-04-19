@@ -398,7 +398,7 @@
                     <div class="num">05</div>
                     <div>
                         <h4>Homebrew Installation</h4>
-                        <p>macOS users: <code style="background: var(--bg-deep); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace;">brew install zeushammer</code></p>
+                        <p>Quick start: <code style="background: var(--bg-deep); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace;">curl -sSL https://git.io/zeushammer | bash</code></p>
                     </div>
                 </div>
 
@@ -459,22 +459,22 @@
             </div>
 
             <div class="install-box">
-                <h3>Quick Install (macOS)</h3>
+                <h3>Quick Install</h3>
                 <div class="install-cmd">
-                    <span class="prompt">$</span> <span class="cmd">brew install zeushammer</span>
+                    <span class="prompt">$</span> <span class="cmd">curl -sSL https://git.io/zeushammer | bash</span>
                 </div>
             </div>
 
             <div class="install-methods">
                 <div class="install-method">
-                    <h4>Homebrew (macOS)</h4>
-                    <pre><code>brew install zeushammer
-zeushammer --help</code></pre>
+                    <h4>cURL Script (Recommended)</h4>
+                    <pre><code>curl -sSL https://git.io/zeushammer | bash</code></pre>
                 </div>
                 <div class="install-method">
-                    <h4>pipx (Cross-platform)</h4>
-                    <pre><code>pipx install zeushammer
-zeushammer --help</code></pre>
+                    <h4>Git Clone</h4>
+                    <pre><code>git clone https://github.com/pengrambo3-tech/ZeusHammer.git
+cd ZeusHammer
+pip install -r requirements.txt</code></pre>
                 </div>
                 <div class="install-method">
                     <h4>Docker</h4>
@@ -482,14 +482,14 @@ zeushammer --help</code></pre>
 docker run -it zeushammer/zeushammer</code></pre>
                 </div>
                 <div class="install-method">
-                    <h4>cURL Script</h4>
-                    <pre><code>curl -sSL https://bit.ly/zeushammer | bash</code></pre>
-                </div>
-                <div class="install-method">
-                    <h4>Manual Install</h4>
+                    <h4>pipx</h4>
                     <pre><code>git clone https://github.com/pengrambo3-tech/ZeusHammer.git
 cd ZeusHammer
-pip install -r requirements.txt</code></pre>
+pipx install .</code></pre>
+                </div>
+                <div class="install-method">
+                    <h4>pip</h4>
+                    <pre><code>pip install git+https://github.com/pengrambo3-tech/ZeusHammer.git</code></pre>
                 </div>
                 <div class="install-method">
                     <h4>Configure API</h4>
