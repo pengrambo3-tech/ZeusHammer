@@ -619,12 +619,75 @@
     <section id="features">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Core Technology</div>
-                <h2 class="section-title">Three Breakthrough Innovations</h2>
-                <p class="section-desc">Unlike typical AI agents, ZeusHammer combines unique technologies that make it smarter, faster, and more efficient.</p>
+                <div class="section-label">Why ZeusHammer?</div>
+                <h2 class="section-title">ZeusHammer vs OpenClaw vs Hermes</h2>
+                <p class="section-desc">The most feature-complete AI agent that truly fuses the best of three major open-source projects.</p>
             </div>
 
-            <div class="feature-grid">
+            <div class="comparison-table" style="overflow-x:auto; margin-top: 2rem;">
+                <table style="width:100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background: rgba(0, 240, 255, 0.1);">
+                            <th style="padding: 1rem; text-align: left; border-bottom: 1px solid rgba(0, 240, 255, 0.2); color: var(--accent-cyan);">Feature</th>
+                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2);">OpenClaw</th>
+                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2);">Hermes</th>
+                            <th style="padding: 1rem; text-align: center; border-bottom: 1px solid rgba(0, 240, 255, 0.2); color: var(--accent-gold);">ZeusHammer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Local Brain</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">80% tasks without LLM</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Voice-First</td>
+                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
+                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Whisper+Edge TTS</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Three-Tier Memory</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Short+Long+Working</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Meditation Mode</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Self-evolution</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">China LLM Support</td>
+                            <td style="padding: 0.8rem; text-align: center;">Needs Config</td>
+                            <td style="padding: 0.8rem; text-align: center;">Partial</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">DeepSeek/Qwen/GLM</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Tool Detector</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center;">❌</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ <span style="font-size:0.7rem; opacity:0.7">Auto-detect 80+ CLI</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 0.8rem;">Built-in Tools</td>
+                            <td style="padding: 0.8rem; text-align: center;">20+</td>
+                            <td style="padding: 0.8rem; text-align: center;">40+</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ 50+</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem;">macOS Install</td>
+                            <td style="padding: 0.8rem; text-align: center;">npm</td>
+                            <td style="padding: 0.8rem; text-align: center;">pip</td>
+                            <td style="padding: 0.8rem; text-align: center; color: var(--accent-gold);">✅ Homebrew</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="feature-grid" style="margin-top: 4rem;">
                 <div class="feature-card">
                     <div class="feature-icon">&#x1F9E0;</div>
                     <h3>Local Brain</h3>
@@ -742,7 +805,7 @@
                 <h2>One-Line Install</h2>
                 <p class="desc">Run this command to install ZeusHammer with all dependencies:</p>
                 <div class="install-cmd">
-                    <span class="prompt">$</span> <span class="cmd">curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash</span>
+                    <span class="prompt">$</span> <span class="cmd">curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash</span>
                 </div>
             </div>
         </div>

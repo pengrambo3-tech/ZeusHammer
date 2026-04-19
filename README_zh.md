@@ -14,6 +14,67 @@
 
 ---
 
+## ZeusHammer vs OpenClaw vs Hermes — 差异化对比
+
+| 维度 | OpenClaw | Hermes | ZeusHammer | ZeusHammer优势 |
+|------|----------|--------|------------|----------------|
+| **Local Brain** | ❌ | ❌ | ✅ | 80%任务无需LLM, 意图识别+技能匹配 |
+| **Voice-First** | 部分(Voice Wake) | 部分 | ✅ | Whisper+Edge TTS全栈, 唤醒词, 语言自动检测 |
+| **三层记忆** | ❌ | ❌ | ✅ | 短时(LRU)+长期(SQLite)+工作记忆 |
+| **冥想模式** | ❌ | ❌ | ✅ | 空闲时自动分析/模式提取/技能升级 |
+| **深度反思** | ❌ | ❌ | ✅ | 因果链分析/洞察生成 |
+| **工作流引擎** | Standing Orders | Cron/子Agent | ✅ | 完整编排+技能匹配+技能学习 |
+| **熔断器** | ❌ | Circuit breaker | ✅ | 安全体系完整 |
+| **OSV扫描** | ❌ | ❌ | ✅ | 命令/文件恶意软件检测 |
+| **中国LLM原生支持** | 需要配置 | 部分 | ✅ | 内置DeepSeek/Qwen/GLM/Moonshot/ERNIE/Doubao/MiniMax客户端 |
+| **工具检测器** | ❌ | ❌ | ✅ | 自动检测80+系统CLI |
+| **成本追踪** | ❌ | 部分 | ✅ | 内置LLM使用成本追踪 |
+| **模型选择器** | ✅ | ✅ | ✅ | 智能路由+降级链+成本优化 |
+| **WebRTC实时音频** | ❌ | ❌ | ✅ | 实时语音流 |
+| **协作房间** | ❌ | ❌ | ✅ | 多人协作支持 |
+| **苹果生态** | ✅ | ✅ | ✅ | Apple Notes/Reminders/iMessage/Screenshot |
+| **记忆向量存储** | LanceDB/QMD | 外部插件(8个) | ✅ | 内置Chroma，原生集成 |
+| **Skill自生成** | ❌ | ❌ | ✅ | Local Brain自动生成新技能 |
+| **RL训练** | ❌ | ✅ Tinker-Atropos | ✅ | SWE-Bench/RL/轨迹压缩 |
+| **安装便捷性** | npm/global | pip | Homebrew/pipx/Docker | macOS用户最友好 |
+| **消息渠道数量** | 30+ | 20+ | 13+ | OpenClaw最多 |
+| **内置工具数量** | 20+ | 40+ | 50+ | ZeusHammer最多 |
+| **AI模型数量** | 35+ | 15+ | 20+ | OpenClaw最多 |
+| **Skills数量** | 插件市场 | 70+ | 50+ | Hermes最多 |
+| **记忆插件** | 4种后端 | 8个外部插件 | 3层内置 | 各有优势 |
+| **MCP支持** | ✅ | ✅ | ✅ | 三者均有 |
+| **ACP/IDE集成** | ✅ | ✅ | ✅ | 三者均有 |
+| **浏览器自动化** | ✅ | ✅ | ✅ | 三者均有 |
+| **生态规模** | 400+贡献者, ClawHub | Nous Research支持 | 新兴项目 | OpenClaw生态最成熟 |
+
+### ZeusHammer 的核心优势总结
+
+ZeusHammer 相对于 OpenClaw 和 Hermes 有以下 **独有的差异化优势**：
+
+1. **Local Brain 架构** — 这是最大的差异化亮点。80%的任务通过意图识别+技能匹配在本地完成，不需要调用昂贵的 LLM API，大幅降低成本并提升响应速度。
+
+2. **Voice-First 设计** — 从语音唤醒、STT、TTS 到语言自动检测，完整打造了语音优先的交互体验，支持后台 Daemon 模式持续监听。
+
+3. **三层记忆系统** — 短时(LRU) + 长期(SQLite FTS5) + 工作记忆，加上向量存储(Chroma)，记忆能力最完整。
+
+4. **冥想模式 + 深度反思** — 业界罕见的自进化能力，AI在空闲时自动分析记忆模式、提取规则、升级技能。
+
+5. **工作流引擎** — 包含技能匹配和技能学习，不只是调度已有技能，还能自动生成新技能。
+
+6. **安全体系** — OSV恶意软件扫描、熔断器、凭证守卫、配置保护四重保障。
+
+7. **工具检测器** — 自动发现系统中 ~80 个常用 CLI 工具，无需手动配置。
+
+8. **中国LLM原生支持** — 内置 DeepSeek/Qwen/GLM/Moonshot/ERNIE/Doubao/MiniMax 等中国主流模型的统一客户端，通过 chinawhapi.com 一站式接入。
+
+9. **Homebrew 安装** — macOS 用户一条命令 `brew install zeushammer` 即可安装，用户体验最佳。
+
+10. **内置50+工具** — 比 OpenClaw 和 Hermes 都多的开箱即用工具集。
+
+**劣势方面**：生态规模（贡献者数量、技能市场）不及 OpenClaw；消息渠道数量（13+）少于 OpenClaw（30+）和 Hermes（20+）；作为新兴项目，社区和文档成熟度有待验证。
+
+---
+
 ## 真正的源码融合
 
 ZeusHammer **真正融合**了三个顶级开源AI智能体项目的核心代码：
@@ -49,14 +110,20 @@ ZeusHammer **真正融合**了三个顶级开源AI智能体项目的核心代码
 ## 一键安装
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
+brew install zeushammer
+```
+
+或 cURL 安装:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
 ```
 
 或手动安装:
 
 ```bash
 git clone https://github.com/pengrambo3-tech/ZeusHammer.git
-cd zueshammer
+cd ZeusHammer
 pip install -r requirements.txt
 ```
 
@@ -84,7 +151,7 @@ pip install -r requirements.txt
 │  └───────────────────────────────────────────────────────────┘ │
 │  ┌───────────────────────────────────────────────────────────┐ │
 │  │                      语音系统                               │ │
-│  │  唤醒词「Zues/宙斯」→ STT → 语言理解 → TTS            │ │
+│  │  唤醒词「Zeus/宙斯」→ STT → 语言理解 → TTS            │ │
 │  └───────────────────────────────────────────────────────────┘ │
 │  ┌───────────────────────────────────────────────────────────┐ │
 │  │                    三层记忆系统                             │ │
@@ -132,7 +199,7 @@ pip install -r requirements.txt
 |-----------|-----------|---------|
 | 语音识别 | **Whisper**（本地） | 支持离线，不上传数据 |
 | 语音合成 | **Edge TTS** | 自然流畅，免费使用 |
-| 唤醒词 | 自定义检测器 | "Zues" 或 "宙斯" 唤醒 |
+| 唤醒词 | 自定义检测器 | "Zeus" 或 "宙斯" 唤醒 |
 | 语言检测 | 自动识别 | 中英文智能切换 |
 | 智能回复 | 上下文感知 | 根据模型/记忆状态回复 |
 
@@ -168,17 +235,17 @@ pip install -r requirements.txt
 
 ```bash
 # 方式一：中国大模型（推荐 - 通过 chinawhapi.com）
-echo "OPENAI_API_KEY=your_key" >> ~/.zueshammer/.env
-echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
-echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
+echo "OPENAI_API_KEY=your_key" >> ~/.zeushammer/.env
+echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zeushammer/.env
+echo "MODEL=deepseek-chat" >> ~/.zeushammer/.env
 
 # 方式二：Anthropic Claude
-echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
-echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
+echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zeushammer/.env
+echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zeushammer/.env
 
 # 方式三：OpenAI
-echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
-echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
+echo "OPENAI_API_KEY=sk-xxx" >> ~/.zeushammer/.env
+echo "MODEL=gpt-4o" >> ~/.zeushammer/.env
 ```
 
 ### 运行
