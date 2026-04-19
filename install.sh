@@ -31,19 +31,29 @@ else
 fi
 
 echo -e "${CYAN}[2/5] Installing dependencies...${NC}"
-pip3 install -q -r requirements.txt 2>/dev/null || {
-    echo "Installing dependencies manually..."
-    pip3 install httpx pyyaml aiofiles python-dotenv openai anthropic edge-tts pyaudio faster-whisper silero-vad fastapi uvicorn starlette websockets jinja2 playwright qrcode pillow cryptography pydub
-}
 
-# macOS specific
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    if ! command -v portaudio &> /dev/null; then
-        echo -e "${YELLOW}[3/5] Installing portaudio (macOS)...${NC}"
-        brew install portaudio 2>/dev/null || true
+# Check if pipx is available, if not suggest installing it
+if command -v pipx &> /dev/null; then
+    echo "Using pipx for installation..."
+    pipx install -e .
+    echo -e "${GREEN}pipx installation successful!${NC}"
+else
+    echo "pipx not found. Installing with pip..."
+    if pip3 install --help 2>/dev/null | grep -q "break-system-packages"; then
+        # macOS Sonoma or newer with protected Python
+        echo "Using --break-system-packages flag for macOS protection..."
+        pip3 install --break-system-packages -q -r requirements.txt
     else
-        echo -e "${CYAN}[3/5] portaudio already installed${NC}"
+        pip3 install -q -r requirements.txt
     fi
+fi
+
+# macOS specific: install portaudio
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo -e "${CYAN}[3/5] Installing portaudio (macOS audio)...${NC}"
+    brew install portaudio 2>/dev/null || true
+else
+    echo -e "${CYAN}[3/5] Skipping platform-specific step${NC}"
 fi
 
 echo -e "${CYAN}[4/5] Creating config directory...${NC}"
@@ -67,7 +77,7 @@ cat > ~/.zeushammer/.env << 'EOF'
 EOF
 
 echo -e "${CYAN}[5/5] Verifying installation...${NC}"
-python3 -c "import sys; sys.path.insert(0, 'src'); from main import main; print('Installation OK')" 2>/dev/null || echo "Note: Run manually to configure API key"
+python3 -c "import sys; sys.path.insert(0, 'src'); from main import main; print('ZeusHammer ready!')" 2>/dev/null || echo "Note: Configure API key to complete setup"
 
 echo ""
 echo -e "${GREEN}=============================================="
@@ -78,10 +88,10 @@ echo "Next steps:"
 echo "  1. Edit ~/.zeushammer/.env and add your API key"
 echo "  2. Run: cd ZeusHammer && python3 -m src.main --mode cli"
 echo ""
-echo "Quick config (ChinaWhapi):"
-echo "  echo 'OPENAI_API_KEY=your_key' >> ~/.zeushammer/.env"
-echo "  echo 'API_BASE=https://api.chinawhapi.com/v1' >> ~/.zeushammer/.env"
-echo "  echo 'MODEL=deepseek-chat' >> ~/.zeushammer/.env"
+echo "Example config (ChinaWhapi):"
+echo '  echo "OPENAI_API_KEY=your_key" >> ~/.zeushammer/.env'
+echo '  echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zeushammer/.env'
+echo '  echo "MODEL=deepseek-chat" >> ~/.zeushammer/.env'
 echo ""
 echo -e "For more info: ${CYAN}https://github.com/pengrambo3-tech/ZeusHammer${NC}"
 echo ""
