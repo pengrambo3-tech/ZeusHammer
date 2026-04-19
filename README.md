@@ -10,10 +10,70 @@
 
 *Think Locally. Speak Freely. Remember Everything.*
 
-[![Star](https://img.shields.io/github/stars/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
-[![Fork](https://img.shields.io/github/forks/pengrambo3-tech/zueshammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
+[![Star](https://img.shields.io/github/stars/pengrambo3-tech/ZeusHammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
+[![Fork](https://img.shields.io/github/forks/pengrambo3-tech/ZeusHammer?style=social)](https://github.com/pengrambo3-tech/ZeusHammer)
 
 </div>
+
+---
+
+## ZeusHammer vs OpenClaw vs Hermes — Feature Comparison
+
+| Feature | OpenClaw | Hermes | ZeusHammer | ZeusHammer Advantage |
+|---------|----------|--------|------------|---------------------|
+| **Local Brain** | ❌ | ❌ | ✅ | 80% tasks without LLM, intent recognition + skill matching |
+| **Voice-First** | Partial (Voice Wake) | Partial | ✅ | Whisper+Edge TTS full-stack, wake word, auto language detection |
+| **Three-Tier Memory** | ❌ | ❌ | ✅ | Short-term (LRU)+Long-term (SQLite)+Working memory |
+| **Meditation Mode** | ❌ | ❌ | ✅ | Auto analysis/pattern extraction/skill upgrade on idle |
+| **Deep Reflection** | ❌ | ❌ | ✅ | Causal chain analysis/insight generation |
+| **Workflow Engine** | Standing Orders | Cron/SubAgent | ✅ | Complete orchestration+skill matching+skill learning |
+| **Circuit Breaker** | ❌ | ✅ Circuit breaker | ✅ | Complete security system |
+| **OSV Scanning** | ❌ | ❌ | ✅ | Command/file malware detection |
+| **China LLM Native** | Needs config | Partial | ✅ | Built-in DeepSeek/Qwen/GLM/Moonshot/ERNIE/Doubao/MiniMax |
+| **Tool Detector** | ❌ | ❌ | ✅ | Auto-detect 80+ system CLI tools |
+| **Cost Tracking** | ❌ | Partial | ✅ | Built-in LLM cost tracking |
+| **Smart Model Router** | ✅ | ✅ | ✅ | Intelligent routing+fallback chain+cost optimization |
+| **WebRTC Real-time Audio** | ❌ | ❌ | ✅ | Real-time voice streaming |
+| **Collaboration Rooms** | ❌ | ❌ | ✅ | Multi-user collaboration |
+| **Apple Ecosystem** | ✅ | ✅ | ✅ | Apple Notes/Reminders/iMessage/Screenshot |
+| **Vector Memory Store** | LanceDB/QMD | External plugins (8) | ✅ | Built-in Chroma, native integration |
+| **Skill Auto-Generation** | ❌ | ❌ | ✅ | Local Brain auto-generates new skills |
+| **RL Training** | ❌ | ✅ Tinker-Atropos | ✅ | SWE-Bench/RL/trajectory compression |
+| **Install Convenience** | npm/global | pip | Homebrew/pipx/Docker | Best for macOS users |
+| **Message Channels** | 30+ | 20+ | 13+ | OpenClaw has most |
+| **Built-in Tools** | 20+ | 40+ | 50+ | ZeusHammer has most |
+| **AI Models** | 35+ | 15+ | 20+ | OpenClaw has most |
+| **Skills** | Plugin market | 70+ | 50+ | Hermes has most |
+| **MCP Support** | ✅ | ✅ | ✅ | All three have |
+| **ACP/IDE Integration** | ✅ | ✅ | ✅ | All three have |
+| **Browser Automation** | ✅ | ✅ | ✅ | All three have |
+| **Community Scale** | 400+ contributors, ClawHub | Nous Research support | New project | OpenClaw most mature |
+
+### ZeusHammer's Core Advantages
+
+ZeusHammer has the following **unique differentiators** compared to OpenClaw and Hermes:
+
+1. **Local Brain Architecture** — The biggest differentiator. 80% of tasks complete via intent recognition + skill matching locally, without calling expensive LLM APIs, significantly reducing costs and improving response speed.
+
+2. **Voice-First Design** — Complete voice-first experience from wake word, STT, TTS to auto language detection, supporting background Daemon mode for continuous listening.
+
+3. **Three-Tier Memory System** — Short-term (LRU) + Long-term (SQLite FTS5) + Working memory, plus vector storage (Chroma), providing the most complete memory capabilities.
+
+4. **Meditation Mode + Deep Reflection** — Industry-rare self-evolution capability. AI automatically analyzes memory patterns, extracts rules, and upgrades skills during idle time.
+
+5. **Workflow Engine** — Includes skill matching and skill learning. Not just scheduling existing skills, but also auto-generating new skills.
+
+6. **Security System** — Four layers: OSV malware scanning, circuit breaker, credential guard, and config protection.
+
+7. **Tool Detector** — Auto-discovers ~80 common CLI tools in the system, no manual configuration needed.
+
+8. **China LLM Native Support** — Built-in unified clients for Chinese mainstream models like DeepSeek/Qwen/GLM/Moonshot/ERNIE/Doubao/MiniMax, accessible via chinawhapi.com.
+
+9. **Homebrew Installation** — macOS users can install with one command: `brew install zeushammer`, providing the best user experience.
+
+10. **50+ Built-in Tools** — More out-of-box tools than OpenClaw and Hermes combined.
+
+**Weaknesses**: Ecosystem scale (contributors, skill marketplace) not as mature as OpenClaw; message channels (13+) less than OpenClaw (30+) and Hermes (20+); as a new project, community and documentation maturity need verification.
 
 ---
 
@@ -52,14 +112,20 @@ ZeusHammer is a **true fusion** of three top-tier open source AI agent projects,
 ## Quick Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/zueshammer/master/install.sh | bash
+brew install zeushammer
+```
+
+Or with cURL:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
 ```
 
 Or manual install:
 
 ```bash
 git clone https://github.com/pengrambo3-tech/ZeusHammer.git
-cd zueshammer
+cd ZeusHammer
 pip install -r requirements.txt
 ```
 
@@ -173,17 +239,17 @@ The fusion brings together the most powerful features from each project:
 
 ```bash
 # Option 1: ChinaWhapi (recommended for Chinese users)
-echo "OPENAI_API_KEY=your_key" >> ~/.zueshammer/.env
-echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zueshammer/.env
-echo "MODEL=deepseek-chat" >> ~/.zueshammer/.env
+echo "OPENAI_API_KEY=your_key" >> ~/.zeushammer/.env
+echo "API_BASE=https://api.chinawhapi.com/v1" >> ~/.zeushammer/.env
+echo "MODEL=deepseek-chat" >> ~/.zeushammer/.env
 
 # Option 2: Anthropic Claude
-echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zueshammer/.env
-echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zueshammer/.env
+echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> ~/.zeushammer/.env
+echo "MODEL=claude-3-5-sonnet-20241022" >> ~/.zeushammer/.env
 
 # Option 3: OpenAI
-echo "OPENAI_API_KEY=sk-xxx" >> ~/.zueshammer/.env
-echo "MODEL=gpt-4o" >> ~/.zueshammer/.env
+echo "OPENAI_API_KEY=sk-xxx" >> ~/.zeushammer/.env
+echo "MODEL=gpt-4o" >> ~/.zeushammer/.env
 ```
 
 ### Run
