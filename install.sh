@@ -17,8 +17,8 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-# Recommended Python version
-RECOMMENDED_PYTHON="3.12"
+# Recommended Python version (3.13 has best package compatibility)
+RECOMMENDED_PYTHON="3.13"
 MIN_PYTHON_MAJOR=3
 MIN_PYTHON_MINOR=10
 
@@ -38,26 +38,33 @@ check_python_version() {
 
     echo -e "${CYAN}Detected Python: $(python3 --version)${NC}"
 
-    # Check if version is too new (3.14+)
-    if [ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -ge 14 ]; then
+    # Check if version is too new (3.15+)
+    if [ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -ge 15 ]; then
         echo -e "${YELLOW}Warning: Python $PYTHON_VERSION detected.${NC}"
         echo "Some packages may not be compatible with Python $PYTHON_VERSION yet."
         echo ""
-        echo "Attempting to install Python $RECOMMENDED_PYTHON..."
+        echo "Checking for compatible Python versions..."
 
-        if command -v brew &> /dev/null; then
-            brew install python@${RECOMMENDED_PYTHON} 2>/dev/null
-            if command -v python3.${RECOMMENDED_PYTHON} &> /dev/null; then
-                echo -e "${GREEN}Python $RECOMMENDED_PYTHON installed successfully!${NC}"
-                echo "Setting up virtual environment with Python $RECOMMENDED_PYTHON..."
-                python3.${RECOMMENDED_PYTHON} -m venv "$HOME/.zeushammer-venv"
-                echo -e "${GREEN}Virtual environment created at: $HOME/.zeushammer-venv${NC}"
-                USE_VENV=1
+        # Check for available Python versions
+        COMPAT_PYTHON=""
+        for ver in 3.14 3.13 3.12 3.11 3.10; do
+            if command -v python3.${ver} &> /dev/null; then
+                COMPAT_PYTHON="python3.${ver}"
+                echo "  Found: $(${COMPAT_PYTHON} --version)"
+                break
             fi
+        done
+
+        if [ -n "$COMPAT_PYTHON" ]; then
+            echo "Setting up virtual environment with $COMPAT_PYTHON..."
+            $COMPAT_PYTHON -m venv "$HOME/.zeushammer-venv"
+            echo -e "${GREEN}Virtual environment created at: $HOME/.zeushammer-venv${NC}"
+            USE_VENV=1
         else
-            echo -e "${RED}Homebrew not found. Please install Python $RECOMMENDED_PYTHON manually:${NC}"
-            echo "  1. Download from https://www.python.org/downloads/"
-            echo "  2. Or install Homebrew first: /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+            echo -e "${RED}No compatible Python found (3.10-3.14).${NC}"
+            echo "Please install a compatible Python version:"
+            echo "  brew install python@3.13"
+            echo "  Or download from: https://www.python.org/downloads/"
             exit 1
         fi
     fi
@@ -80,7 +87,7 @@ smart_install() {
     echo -n "  Installing $package... "
 
     # Try main package first
-    if pip3 install --quiet "$package" 2>/tmp/pip-error-${package}.log; then
+    if $PIP_CMD install --quiet "$package" 2>/tmp/pip-error-${package}.log; then
         echo -e "${GREEN}OK${NC}"
         return 0
     fi
@@ -96,7 +103,7 @@ smart_install() {
         echo "  Trying with compatible version..."
 
         # Try wheel-only install (no compilation)
-        if pip3 install --only-binary=:all: --quiet "$package" 2>/dev/null; then
+        if $PIP_CMD install --only-binary=:all: --quiet "$package" 2>/dev/null; then
             echo -e "  ${GREEN}Installed pre-built binary!${NC}"
             return 0
         fi
@@ -106,18 +113,18 @@ smart_install() {
             "pydub")
                 # Try older pydub without PyAV dependency
                 echo "  Trying pydub with alternative audio backend..."
-                pip3 install --quiet "pydub<0.25.0" 2>/dev/null && return 0
+                $PIP_CMD install --quiet "pydub<0.25.0" 2>/dev/null && return 0
                 ;;
             "faster-whisper")
                 # Try standard openai-whisper as fallback
                 if [ -n "$fallback_pkg" ]; then
                     echo "  Installing fallback: $fallback_pkg"
-                    pip3 install --quiet "$fallback_pkg" 2>/dev/null && return 0
+                    $PIP_CMD install --quiet "$fallback_pkg" 2>/dev/null && return 0
                 fi
                 ;;
             "pyaudio")
                 # Try pyaudio with pre-built
-                pip3 install --quiet --only-binary=pyaudio "pyaudio" 2>/dev/null && return 0
+                $PIP_CMD install --quiet --only-binary=pyaudio "pyaudio" 2>/dev/null && return 0
                 ;;
         esac
     fi
@@ -129,11 +136,11 @@ smart_install() {
         if [[ "$OSTYPE" == "darwin"* ]]; then
             if command -v brew &> /dev/null; then
                 echo "  Installing portaudio via Homebrew..."
-                brew install portaudio 2>/dev/null && pip3 install --quiet "$package" 2>/dev/null && return 0
+                brew install portaudio 2>/dev/null && $PIP_CMD install --quiet "$package" 2>/dev/null && return 0
             fi
         elif command -v apt-get &> /dev/null; then
             echo "  Installing portaudio via apt..."
-            sudo apt-get install -y portaudio19-dev 2>/dev/null && pip3 install --quiet "$package" 2>/dev/null && return 0
+            sudo apt-get install -y portaudio19-dev 2>/dev/null && $PIP_CMD install --quiet "$package" 2>/dev/null && return 0
         fi
     fi
 
@@ -142,13 +149,13 @@ smart_install() {
         echo -e "${YELLOW}FIXING externally-managed-environment...${NC}"
 
         # Try with --break-system-packages
-        if pip3 install --break-system-packages --quiet "$package" 2>/dev/null; then
+        if $PIP_CMD install --break-system-packages --quiet "$package" 2>/dev/null; then
             echo -e "  ${GREEN}Fixed with --break-system-packages${NC}"
             return 0
         fi
 
         # Try user install
-        if pip3 install --user --quiet "$package" 2>/dev/null; then
+        if $PIP_CMD install --user --quiet "$package" 2>/dev/null; then
             echo -e "  ${GREEN}Fixed with --user install${NC}"
             return 0
         fi
@@ -157,7 +164,7 @@ smart_install() {
     # If we have a fallback and main package failed completely
     if [ -n "$fallback_pkg" ]; then
         echo -e "${YELLOW}FAILED - Trying fallback: $fallback_pkg${NC}"
-        if pip3 install --quiet "$fallback_pkg" 2>/dev/null; then
+        if $PIP_CMD install --quiet "$fallback_pkg" 2>/dev/null; then
             echo -e "  ${GREEN}Fallback installed successfully!${NC}"
             return 0
         fi
@@ -182,7 +189,8 @@ main() {
     if [ -d "$HOME/ZeusHammer" ]; then
         echo "ZeusHammer directory exists, updating..."
         cd "$HOME/ZeusHammer"
-        git pull origin master
+        # Try ff-only first, then fallback to merge
+        git pull origin master --ff-only 2>/dev/null || git pull origin master --no-rebase --no-ff 2>/dev/null || echo "  (Using local version)"
     else
         git clone https://github.com/pengrambo3-tech/ZeusHammer.git
         cd "$HOME/ZeusHammer"
@@ -190,6 +198,15 @@ main() {
 
     ZEUSHAMMER_DIR="$PWD"
     echo "Working in: $ZEUSHAMMER_DIR"
+
+    # If using virtualenv, activate it
+    if [ "$USE_VENV" = 1 ]; then
+        echo -e "${CYAN}Activating virtual environment...${NC}"
+        source "$HOME/.zeushammer-venv/bin/activate"
+        PIP_CMD="pip"
+    else
+        PIP_CMD="pip3"
+    fi
 
     echo -e "${CYAN}[2/5] Installing dependencies...${NC}"
     echo ""
@@ -233,7 +250,13 @@ main() {
     )
 
     for entry in "${OPTIONAL_PACKAGES[@]}"; do
-        IFS='::' read -r pkg fallback <<< "$entry"
+        # Extract package name and fallback
+        pkg="${entry%%::*}"
+        fallback="${entry#*::}"
+        # If fallback equals pkg with ::, set fallback to empty
+        if [ "$fallback" = "$pkg" ]; then
+            fallback=""
+        fi
         smart_install "$pkg" "$fallback" || true
     done
 
