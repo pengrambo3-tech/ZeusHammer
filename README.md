@@ -150,20 +150,6 @@ API_BASE=https://api.chinawhapi.com/v1
 MODEL=deepseek-chat
 ```
 
-2. Run:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
-```
-
-Or manual install:
-
-```bash
-git clone https://github.com/pengrambo3-tech/ZeusHammer.git
-cd ZeusHammer
-pip install -r requirements.txt
-```
-
 ---
 
 ## Architecture
