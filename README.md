@@ -116,11 +116,41 @@ ZeusHammer is a **true fusion** of three top-tier open source AI agent projects,
 
 ## Quick Install
 
+**Method 1: One-Click Install (Recommended)**
 ```bash
-brew install zeushammer
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
 ```
 
-Or with cURL:
+**Method 2: Manual Install**
+```bash
+git clone https://github.com/pengrambo3-tech/ZeusHammer.git
+cd ZeusHammer
+pip install -r requirements.txt
+```
+
+**Method 3: Homebrew (Coming Soon)**
+```bash
+# Homebrew formula coming soon...
+brew install zeushammer  # TODO
+```
+
+---
+
+**After Install:**
+
+1. Configure API Key:
+```bash
+nano ~/.zeushammer/.env
+```
+
+Add your API key:
+```
+OPENAI_API_KEY=your_key
+API_BASE=https://api.chinawhapi.com/v1
+MODEL=deepseek-chat
+```
+
+2. Run:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
@@ -259,10 +289,39 @@ echo "MODEL=gpt-4o" >> ~/.zeushammer/.env
 
 ### Run
 
+**CLI Mode:**
 ```bash
-python3 -m src.main --mode cli   # CLI mode
-python3 -m src.main --mode web   # Web UI
-python3 -m src.main --mode voice # Voice (recommended!)
+zeushammer --mode cli
+# or
+python3 -m src.main --mode cli
+```
+
+**Web UI Mode (Recommended!):**
+```bash
+zeushammer --mode web
+# or
+python3 -m src.ui.server
+```
+
+Then open: **http://localhost:8765**
+
+Features:
+- 💬 Real-time chat interface
+- 🎤 Voice interaction (WebRTC)
+- 📊 System status monitoring
+- ⚙️ Configuration management
+- 🧠 Memory visualization
+
+**Voice Mode:**
+```bash
+zeushammer --mode voice
+# or
+python3 -m src.main --mode voice
+```
+
+**TUI Mode:**
+```bash
+zeushammer --mode tui
 ```
 
 ---

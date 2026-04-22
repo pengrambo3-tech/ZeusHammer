@@ -107,13 +107,43 @@ ZeusHammer **真正融合**了三个顶级开源AI智能体项目的核心代码
 
 ---
 
-## 一键安装
+## 快速安装
 
+**方法 1: 一键安装（推荐）**
 ```bash
-brew install zeushammer
+curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
 ```
 
-或 cURL 安装:
+**方法 2: 手动安装**
+```bash
+git clone https://github.com/pengrambo3-tech/ZeusHammer.git
+cd ZeusHammer
+pip install -r requirements.txt
+```
+
+**方法 3: Homebrew（即将支持）**
+```bash
+# Homebrew formula 开发中...
+brew install zeushammer  # TODO
+```
+
+---
+
+**安装后配置:**
+
+1. 配置 API Key:
+```bash
+nano ~/.zeushammer/.env
+```
+
+添加你的 API Key:
+```
+OPENAI_API_KEY=your_key
+API_BASE=https://api.chinawhapi.com/v1
+MODEL=deepseek-chat
+```
+
+2. 运行:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/pengrambo3-tech/ZeusHammer/master/install.sh | bash
@@ -250,10 +280,39 @@ echo "MODEL=gpt-4o" >> ~/.zeushammer/.env
 
 ### 运行
 
+**命令行模式:**
 ```bash
-python3 -m src.main --mode cli   # 命令行
-python3 -m src.main --mode web   # 网页界面
-python3 -m src.main --mode voice  # 语音模式（推荐！）
+zeushammer --mode cli
+# 或
+python3 -m src.main --mode cli
+```
+
+**Web 界面模式（推荐！）:**
+```bash
+zeushammer --mode web
+# 或
+python3 -m src.ui.server
+```
+
+然后访问：**http://localhost:8765**
+
+功能:
+- 💬 实时对话界面
+- 🎤 语音交互 (WebRTC)
+- 📊 系统状态监控
+- ⚙️ 配置管理
+- 🧠 记忆可视化
+
+**语音模式:**
+```bash
+zeushammer --mode voice
+# 或
+python3 -m src.main --mode voice
+```
+
+**TUI 模式:**
+```bash
+zeushammer --mode tui
 ```
 
 ---
