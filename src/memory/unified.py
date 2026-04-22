@@ -37,6 +37,9 @@ from dataclasses import dataclass, field
 from collections import OrderedDict
 import re
 
+# 记忆同步（新增）
+from .memory_sync import MemorySync, MemoryBridge
+
 logger = logging.getLogger(__name__)
 
 
@@ -127,6 +130,10 @@ class UnifiedMemory:
         await self._warm_cache()
 
         logger.info("统一记忆系统初始化完成")
+        
+        # 记忆同步（新增）
+        self._memory_sync: Optional[MemorySync] = None
+        self._memory_bridge: Optional[MemoryBridge] = None
 
     async def _init_long_memory(self):
         """初始化SQLite (Hermes风格)"""
