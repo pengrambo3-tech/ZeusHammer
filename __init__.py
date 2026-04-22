@@ -11,7 +11,7 @@ Version: 2.0.0
 Author: ZeusHammer Team
 """
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 __author__ = "ZeusHammer Team"
 
 import asyncio

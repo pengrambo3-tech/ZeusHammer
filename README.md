@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-2.1.0-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
@@ -38,6 +38,11 @@
 | **Apple Ecosystem** | ✅ | ✅ | ✅ | Apple Notes/Reminders/iMessage/Screenshot |
 | **Vector Memory Store** | LanceDB/QMD | External plugins (8) | ✅ | Built-in Chroma, native integration |
 | **Skill Auto-Generation** | ❌ | ❌ | ✅ | Local Brain auto-generates new skills |
+| **Skill Learner** | ❌ | ❌ | ✅ | Auto-learn from work records, quality scoring |
+| **Deep Reflection** | ❌ | ❌ | ✅ | Post-execution analysis, self-improvement |
+| **Memory Sync** | ❌ | ❌ | ✅ | Sync OpenClaw & Hermes memories |
+| **Chain of Thought** | ❌ | ❌ | ✅ | Multi-step reasoning |
+| **Meditation Mode** | ❌ | ❌ | ✅ | Auto-optimize during idle time |
 | **RL Training** | ❌ | ✅ Tinker-Atropos | ✅ | SWE-Bench/RL/trajectory compression |
 | **Install Convenience** | npm/global | pip | Homebrew/pipx/Docker | Best for macOS users |
 | **Message Channels** | 30+ | 20+ | 13+ | OpenClaw has most |

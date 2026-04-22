@@ -32,7 +32,7 @@ if requirements_file.exists():
 
 setup(
     name="zueshammer",
-    version="2.0.0",
+    version="2.1.0",
     author="ZeusHammer Team",
     author_email="contact@zueshammer.ai",
     description="Super AI Agent - Claude + Hermes + OpenClaw",
