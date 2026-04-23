@@ -309,8 +309,14 @@ class LocalBrain:
         if any(code in text for code in ["function", "def ", "class ", "import ", "const ", "let ", "var "]):
             entities["has_code"] = True
 
-        # 确定意图类型
-        if any(p in text for p in ["读", "打开", "查看", "cat", "read", "show", "open"]):
+        # 确定意图类型（按优先级排序，避免误匹配）
+        
+        # 优先检查金融/股票查询（避免被误识别为文件读取）
+        if any(p in text for p in ["股价", "股票", "价格", "行情", "市值", "涨跌", "股价查询", "股票查询"]):
+            intent_type = IntentType.WEB_SEARCH
+        elif any(p in text for p in ["搜索", "查找", "查询", "google", "search", "query", "问", "打听"]):
+            intent_type = IntentType.WEB_SEARCH
+        elif any(p in text for p in ["读", "打开", "查看", "cat", "read", "show", "open"]):
             intent_type = IntentType.FILE_READ
         elif any(p in text for p in ["写", "创建", "save", "write", "create"]):
             intent_type = IntentType.FILE_WRITE
@@ -320,8 +326,6 @@ class LocalBrain:
             intent_type = IntentType.FILE_DELETE
         elif any(p in text for p in ["执行", "运行", "命令", "run", "bash", "shell", "exec"]):
             intent_type = IntentType.COMMAND_EXEC
-        elif any(p in text for p in ["搜索", "查找", "google", "search"]):
-            intent_type = IntentType.WEB_SEARCH
         elif any(p in text for p in ["浏览", "打开网页", "browse", "navigate"]):
             intent_type = IntentType.WEB_BROWSE
         elif any(p in text for p in ["代码", "function", "def ", "class "]):

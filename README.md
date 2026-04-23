@@ -129,10 +129,8 @@ pip install -r requirements.txt
 ```
 
 **Method 3: Homebrew (Coming Soon)**
-```bash
-# Homebrew formula coming soon...
-brew install zeushammer  # TODO
-```
+
+Homebrew formula is under development. Use curl install script above for now.
 
 ---
 
@@ -148,6 +146,36 @@ Add your API key:
 OPENAI_API_KEY=your_key
 API_BASE=https://api.chinawhapi.com/v1
 MODEL=deepseek-chat
+```
+
+2. Quick Start:
+
+**CLI Mode:**
+```bash
+zeushammer --mode cli
+# or
+python3 -m src.main --mode cli
+```
+
+**Web UI Mode (Recommended):**
+```bash
+zeushammer --mode web
+# or
+python3 -m src.ui.server
+```
+Then visit: http://localhost:8765
+
+**Voice Mode:**
+```bash
+zeushammer --mode voice
+```
+
+3. Example Usage:
+```
+>>> 查询微软今天的股价
+>>> 读取 /etc/passwd 文件
+>>> 创建一个 Python 脚本
+>>> 搜索 AI 行业新闻
 ```
 
 ---
