@@ -40,6 +40,9 @@ class BrowserConfig:
     slow_mo: int = 0
     downloads_path: str = ""
     storage_state: str = ""
+    # 持久化上下文（复用用户登录状态）
+    user_data_dir: str = ""  # 用户数据目录路径
+    persistent_context: bool = False  # 是否使用持久化上下文
 
 
 @dataclass
@@ -113,6 +116,46 @@ class PlaywrightBrowser:
                     "--no-sandbox",
                 ]
 
+            # ========== 持久化上下文支持 ==========
+            if self.config.persistent_context and self.config.user_data_dir:
+                # 使用持久化上下文（复用用户登录状态）
+                logger.info(f"Using persistent context with user data dir: {self.config.user_data_dir}")
+                
+                context_options = {
+                    "user_data_dir": self.config.user_data_dir,
+                    "headless": self.config.headless,
+                    "viewport": {
+                        "width": self.config.viewport_width,
+                        "height": self.config.viewport_height,
+                    },
+                }
+
+                if self.config.user_agent:
+                    context_options["user_agent"] = self.config.user_agent
+
+                if self.config.stealth:
+                    context_options["args"] = [
+                        "--disable-blink-features=AutomationControlled",
+                        "--disable-dev-shm-usage",
+                        "--no-sandbox",
+                    ]
+
+                # 启动持久化上下文（直接复用已登录的浏览器）
+                self._context = await playwright.chromium.launch_persistent_context(
+                    **context_options
+                )
+
+                # 获取或创建页面
+                if self._context.pages:
+                    self._page = self._context.pages[0]
+                else:
+                    self._page = await self._context.new_page()
+                
+                self._pages["main"] = self._page
+                logger.info("Playwright persistent context initialized")
+                return True
+
+            # ========== 标准模式（无持久化） ==========
             # 启动浏览器
             self._browser = await playwright.chromium.launch(**launch_options)
 

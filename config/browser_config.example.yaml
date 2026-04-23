@@ -1,0 +1,38 @@
+# ZeusHammer 浏览器配置示例
+
+browser:
+  # 基础配置
+  provider: playwright
+  headless: false  # 调试时设为 false，生产环境设为 true
+  
+  # 视口大小
+  viewport_width: 1280
+  viewport_height: 720
+  
+  # ========== 持久化登录配置（关键！）==========
+  # 启用持久化上下文，复用已登录的浏览器会话
+  persistent_context: true
+  
+  # 用户数据目录路径（保存 Cookie、LocalStorage 等）
+  user_data_dir: "/Users/imac/.zeushammer/browser-profile"
+  
+  # ========== 其他配置 ==========
+  # 隐身模式（防检测）
+  stealth: true
+  
+  # 慢动作（调试用，单位毫秒）
+  slow_mo: 0
+  
+  # 下载目录
+  downloads_path: "/Users/imac/Downloads/zeushammer"
+  
+  # 代理（可选）
+  # proxy: "http://proxy.example.com:8080"
+  
+  # User-Agent（可选）
+  # user_agent: "Mozilla/5.0 ..."
+
+# 使用示例：
+# 1. 首次配置：运行 setup_browser_profile.sh 手动登录
+# 2. 之后所有自动化任务都会复用已登录状态
+# 3. 无需每次都授权！
