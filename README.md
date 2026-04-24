@@ -173,7 +173,6 @@ pip install -r requirements.txt
 ```
 
 ### Step 2: Configure (30 seconds)
-
 ```bash
 # Create config file
 mkdir -p ~/.zeushammer
@@ -187,6 +186,7 @@ API_BASE=https://api.chinawhapi.com/v1
 MODEL=deepseek-chat
 ```
 
+<<<<<<< HEAD
 ### Step 3: Run!
 
 ```bash
